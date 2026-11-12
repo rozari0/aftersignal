@@ -1,7 +1,17 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { comments, commentsByPost, postById, posts, postsByAuthor, profileById, profiles } from "@/data";
+import {
+  comments,
+  commentsByPost,
+  postById,
+  posts,
+  postsByAuthor,
+  profileById,
+  profiles,
+  salvageByEquipment,
+  salvageListings,
+} from "@/data";
 import { eraForYear } from "@/data/taxonomy";
 
 describe("profile integrity", () => {
@@ -125,5 +135,36 @@ describe("post and comment integrity", () => {
   it("labels the Opportunity last transmission as a paraphrase", () => {
     const post = postById[profileById.opportunity.lastSignalPostId];
     expect(post.telemetry.sourceNote ?? "").toMatch(/paraphrase/i);
+  });
+});
+
+describe("salvage integrity", () => {
+  it("has one consistent salvage listing per featured profile", () => {
+    expect(salvageListings).toHaveLength(6);
+    expect(new Set(salvageListings.map((l) => l.id)).size).toBe(6);
+    for (const listing of salvageListings) {
+      const profile = profileById[listing.equipmentId];
+      expect(profile.tier, listing.id).toBe("featured");
+      expect(salvageByEquipment[listing.equipmentId]?.id, listing.id).toBe(listing.id);
+      expect(listing.components.length, listing.id).toBeGreaterThanOrEqual(3);
+      const sum = listing.components.reduce((n, c) => n + c.massKg, 0);
+      expect(Math.abs(sum - listing.totalMassKg), listing.id).toBeLessThanOrEqual(0.5);
+      expect(listing.totalMassKg, listing.id).toBeLessThanOrEqual(profile.telemetry.massKg);
+      expect(listing.isruUses.length, listing.id).toBeGreaterThanOrEqual(2);
+      expect(listing.pickup.coordinates).toEqual(profile.telemetry.coordinates);
+      expect(listing.pickup.planet).toBe(profile.planet);
+    }
+  });
+
+  it("mixes availability states", () => {
+    const count = (a: string) => salvageListings.filter((l) => l.availability === a).length;
+    expect(count("available")).toBe(4);
+    expect(count("reserved")).toBe(1);
+    expect(count("claimed")).toBe(1);
+  });
+
+  it("never lists parts that went back to Earth", () => {
+    const surveyor = salvageByEquipment["surveyor-3"]!;
+    for (const c of surveyor.components) expect(c.material.toLowerCase()).not.toMatch(/camera|scoop/);
   });
 });

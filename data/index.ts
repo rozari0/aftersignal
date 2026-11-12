@@ -1,6 +1,7 @@
-import type { Comment, EquipmentId, EquipmentProfile, SocialPost } from "@/data/types";
+import type { Comment, EquipmentId, EquipmentProfile, SalvageListing, SocialPost } from "@/data/types";
 import { comments as rawComments } from "@/data/comments";
 import { posts as rawPosts } from "@/data/posts";
+import { salvageListings } from "@/data/salvage";
 import { opportunity } from "@/data/profiles/opportunity";
 import { ingenuity } from "@/data/profiles/ingenuity";
 import { surveyor3 } from "@/data/profiles/surveyor-3";
@@ -47,3 +48,9 @@ export const postsByAuthor = Object.fromEntries(
     posts.filter((p) => p.authorId === profile.id).sort((a, b) => byDateAsc(b, a)),
   ]),
 ) as Record<EquipmentId, SocialPost[]>;
+
+export { salvageListings, SALVAGE_DISCLAIMER } from "@/data/salvage";
+
+export const salvageByEquipment = Object.fromEntries(
+  salvageListings.map((listing) => [listing.equipmentId, listing]),
+) as Partial<Record<EquipmentId, SalvageListing>>;
