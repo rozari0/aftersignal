@@ -31,7 +31,7 @@ export function GhostToggle() {
           className={cn("h-3.5 w-3.5 rounded-full", telemetry ? "bg-cyan" : "bg-amber")}
         />
       </span>
-      <span className={cn("w-[9ch] text-left", telemetry ? "text-cyan" : "text-amber")}>
+      <span className={cn("hidden w-[9ch] text-left min-[480px]:inline", telemetry ? "text-cyan" : "text-amber")}>
         {telemetry ? "Telemetry" : "Story"}
       </span>
     </button>

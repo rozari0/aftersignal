@@ -1,0 +1,22 @@
+import type { EquipmentProfile } from "@/data/types";
+import { formatActive, formatMass, powerLabel } from "@/lib/telemetry";
+
+/** Compact one-row instrument readout used on feed cards in telemetry mode. */
+export function TelemetryStrip({ profile }: { profile: EquipmentProfile }) {
+  const items = [
+    { label: "Mass", value: formatMass(profile.telemetry.massKg) },
+    { label: "Power", value: powerLabel(profile.telemetry.powerSource) },
+    { label: "Active", value: formatActive(profile) },
+    { label: "Planet", value: profile.planet === "moon" ? "Moon" : "Mars" },
+  ];
+  return (
+    <dl className="grid grid-cols-2 border-y border-rule sm:grid-cols-4">
+      {items.map((item, i) => (
+        <div key={item.label} className={i > 0 ? "border-rule px-3 py-2 sm:border-l" : "px-3 py-2"}>
+          <dt className="font-mono text-[10px] uppercase tracking-wider text-muted">{item.label}</dt>
+          <dd className="font-mono text-[13px] text-text">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
