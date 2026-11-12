@@ -414,7 +414,7 @@ export const PLANETS = [
 export const ERAS: { id: EraId; label: string; range: string; years: [number, number] }[] = [
   { id: "apollo-viking", label: "Apollo / Viking", range: "1960s–1970s", years: [1960, 1979] },
   { id: "pathfinder-mer", label: "Pathfinder / MER", range: "1990s–2000s", years: [1990, 2009] },
-  { id: "modern", label: "Curiosity / Artemis", range: "2010s–2020s", years: [2010, 2029] },
+  { id: "modern", label: "Curiosity / Perseverance / Ingenuity", range: "2010s–2020s", years: [2010, 2029] },
 ];
 
 export const STATUSES: { id: SignalStatus; label: string; hint: string }[] = [
