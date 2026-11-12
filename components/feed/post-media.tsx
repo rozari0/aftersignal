@@ -17,7 +17,7 @@ export function PostMedia({ media, muted = false }: { media: ImageRef; muted?: b
         )}
         style={{ objectPosition: media.focus }}
       />
-      <figcaption className="flex justify-between gap-3 border-t border-rule bg-panel px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-muted">
+      <figcaption className="flex justify-between gap-3 border-t border-rule bg-panel px-3 py-1.5 font-mono text-micro uppercase tracking-wider text-muted">
         <span>{media.credit}</span>
         {media.nasaId ? (
           <a

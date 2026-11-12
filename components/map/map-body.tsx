@@ -182,7 +182,7 @@ export function MapBody({
         ))}
       </div>
 
-      <div aria-hidden className="pointer-events-none absolute bottom-2 right-2 font-mono text-[10px] uppercase tracking-wider text-text/60">
+      <div aria-hidden className="pointer-events-none absolute bottom-2 right-2 font-mono text-micro uppercase tracking-wider text-text/60">
         0° · equirectangular · ×{view.zoom.toFixed(1)}
       </div>
     </div>

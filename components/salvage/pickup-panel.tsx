@@ -27,7 +27,7 @@ export function PickupPanel({
 
   return (
     <div className="space-y-3 rounded-[2px] border border-rule bg-void/50 p-3">
-      <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 font-mono text-[11px]">
+      <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 font-mono text-label">
         <dt className="uppercase tracking-wider text-muted">Pickup</dt>
         <dd className="text-text">
           {pickup.siteName} · {pickup.planet === "moon" ? "Moon" : "Mars"}
@@ -43,7 +43,7 @@ export function PickupPanel({
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span
           className={cn(
-            "rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider",
+            "rounded-full border px-2.5 py-0.5 font-mono text-micro uppercase tracking-wider",
             reservedByYou ? AVAILABILITY.reserved.className : AVAILABILITY[availability].className,
           )}
         >

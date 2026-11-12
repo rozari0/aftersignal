@@ -37,7 +37,7 @@ export function SalvageGrid() {
   return (
     <div className="space-y-4">
       <div role="group" aria-label="Filter listings by planet" className="flex flex-wrap items-center gap-1">
-        <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Pickup location</span>
+        <span className="mr-2 font-mono text-micro uppercase tracking-[0.14em] text-muted">Pickup location</span>
         {FILTERS.map((f) => (
           <button
             key={f.value}
@@ -45,14 +45,14 @@ export function SalvageGrid() {
             aria-pressed={planet === f.value}
             onClick={() => setPlanet(f.value)}
             className={cn(
-              "rounded-[2px] border-b px-2 py-1 font-mono text-[11px] uppercase tracking-wider transition-colors",
+              "rounded-[2px] border-b px-2 py-1 font-mono text-label uppercase tracking-wider transition-colors",
               planet === f.value ? "border-amber text-amber" : "border-transparent text-muted hover:text-text",
             )}
           >
             {f.label}
           </button>
         ))}
-        <span className="ml-auto font-mono text-[11px] uppercase tracking-wider text-muted" aria-live="polite">
+        <span className="ml-auto font-mono text-label uppercase tracking-wider text-muted" aria-live="polite">
           {visible.length} listings
         </span>
       </div>

@@ -15,7 +15,7 @@ export default function Page() {
       <header className="space-y-3">
         <SectionLabel>Surface locator</SectionLabel>
         <h1 className="font-serif text-4xl tracking-tight text-text sm:text-5xl">Where they rest</h1>
-        <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
+        <p className="max-w-2xl text-body leading-relaxed text-muted">
           {profiles.length} pieces of hardware, {moon} on the Moon and {profiles.length - moon} on Mars, plotted from their
           published coordinates on public-domain global mosaics.
         </p>

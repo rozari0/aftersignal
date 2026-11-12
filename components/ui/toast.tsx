@@ -20,7 +20,7 @@ export function Toast({ message, onDone, duration = 2500 }: { message: string | 
       className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center px-4"
     >
       {message ? (
-        <p className="pointer-events-auto rounded-[3px] border border-amber/60 bg-panel px-4 py-2.5 font-mono text-[12px] tracking-wide text-text shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+        <p className="pointer-events-auto rounded-[3px] border border-amber/60 bg-panel px-4 py-2.5 font-mono text-meta tracking-wide text-text shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
           <span aria-hidden className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-amber align-middle" />
           {message}
         </p>

@@ -7,7 +7,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <ModeProvider>
       <a
         href="#main"
-        className="sr-only z-[60] rounded-[2px] bg-amber px-3 py-2 font-mono text-[12px] uppercase tracking-wider text-void focus:not-sr-only focus:fixed focus:left-4 focus:top-3"
+        className="sr-only z-[60] rounded-[2px] bg-amber px-3 py-2 font-mono text-meta uppercase tracking-wider text-void focus:not-sr-only focus:fixed focus:left-4 focus:top-3"
       >
         Skip to content
       </a>

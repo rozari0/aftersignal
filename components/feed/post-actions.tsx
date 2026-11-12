@@ -12,7 +12,7 @@ export function PostActions({ metrics, replies }: { metrics: PostMetrics; replie
   const [reposted, setReposted] = useState(false);
 
   return (
-    <div className="flex items-center gap-6 font-mono text-[12px] text-muted">
+    <div className="flex items-center gap-6 font-mono text-meta text-muted">
       <button
         type="button"
         aria-pressed={liked}

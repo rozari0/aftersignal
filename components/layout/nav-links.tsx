@@ -22,7 +22,7 @@ export function NavLinks() {
             href={link.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "border-b py-1 font-mono text-[11px] uppercase tracking-wider transition-colors sm:text-xs",
+              "border-b py-1 font-mono text-label uppercase tracking-wider transition-colors sm:text-meta",
               active ? "border-amber text-text" : "border-transparent text-muted hover:text-text",
             )}
           >

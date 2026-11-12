@@ -12,8 +12,8 @@ export function RelationChip({ relation }: { relation: { id: EquipmentId; label:
     >
       <EquipmentAvatar profile={profile} size="sm" />
       <span className="flex flex-col leading-tight">
-        <span className="text-[13px] text-text group-hover:underline">{profile.displayName}</span>
-        <span className="font-mono text-[10px] uppercase tracking-wider text-muted">{relation.label}</span>
+        <span className="text-small text-text group-hover:underline">{profile.displayName}</span>
+        <span className="font-mono text-micro uppercase tracking-wider text-muted">{relation.label}</span>
       </span>
     </Link>
   );

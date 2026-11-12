@@ -46,7 +46,7 @@ export function SalvageCard({
       )}
     >
       <header className="space-y-2">
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-micro uppercase tracking-[0.14em] text-muted">
           <span>
             {telemetry ? "Salvage manifest" : "For local pickup"} · {listing.pickup.planet === "moon" ? "🌙 Moon" : "🔴 Mars"}
           </span>
@@ -55,11 +55,11 @@ export function SalvageCard({
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <h2
             id={`${listing.id}-title`}
-            className={cn(telemetry ? "font-mono text-[15px] uppercase tracking-wide" : "font-serif text-[24px] leading-tight", "text-text")}
+            className={cn(telemetry ? "font-mono text-body uppercase tracking-wide" : "font-serif text-[24px] leading-tight", "text-text")}
           >
             {listing.title}
           </h2>
-          <p className={cn("font-mono text-[12px]", telemetry ? "text-cyan" : "text-amber")}>
+          <p className={cn("font-mono text-meta", telemetry ? "text-cyan" : "text-amber")}>
             {telemetry ? formatMass(listing.totalMassKg) : listing.askingPrice}
           </p>
         </div>
@@ -79,8 +79,8 @@ export function SalvageCard({
                 <ComponentTable components={listing.components} totalMassKg={listing.totalMassKg} />
               </div>
               <div className="space-y-1.5">
-                <h3 className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">ISRU applications</h3>
-                <ul className="space-y-1 font-mono text-[12px] text-text/90">
+                <h3 className="font-mono text-micro uppercase tracking-[0.14em] text-muted">ISRU applications</h3>
+                <ul className="space-y-1 font-mono text-meta text-text/90">
                   {listing.isruUses.map((use) => (
                     <li key={use} className="flex gap-2">
                       <span aria-hidden className="text-cyan">›</span>
@@ -89,22 +89,22 @@ export function SalvageCard({
                   ))}
                 </ul>
               </div>
-              <p className="font-mono text-[11px] leading-relaxed text-muted">
+              <p className="font-mono text-label leading-relaxed text-muted">
                 <span className="uppercase tracking-wider text-text">{CONDITION[listing.condition]}.</span> {listing.conditionNote}
               </p>
             </>
           ) : (
             <>
               <p className="font-serif text-[18px] leading-[1.5] text-text">{listing.blurb}</p>
-              <p className="text-[14px] leading-relaxed text-muted">
-                <span className="mr-2 rounded-full border border-rule px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-text">
+              <p className="text-body-sm leading-relaxed text-muted">
+                <span className="mr-2 rounded-full border border-rule px-2 py-0.5 font-mono text-micro uppercase tracking-wider text-text">
                   {CONDITION[listing.condition]}
                 </span>
                 {listing.conditionNote}
               </p>
               <div className="space-y-1">
-                <h3 className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Included</h3>
-                <p className="text-[13px] leading-relaxed text-text/85">
+                <h3 className="font-mono text-micro uppercase tracking-[0.14em] text-muted">Included</h3>
+                <p className="text-small leading-relaxed text-text/85">
                   {listing.components.map((c) => c.material).join(" · ")}
                 </p>
               </div>
@@ -123,7 +123,7 @@ export function SalvageCard({
         />
         <Link
           href={`/equipment/${profile.id}`}
-          className="group flex items-center gap-2 rounded-[2px] font-mono text-[11px] uppercase tracking-wider text-muted hover:text-text"
+          className="group flex items-center gap-2 rounded-[2px] font-mono text-label uppercase tracking-wider text-muted hover:text-text"
         >
           <EquipmentAvatar profile={profile} size="sm" />
           <span>

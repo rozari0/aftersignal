@@ -108,7 +108,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
         aria-expanded={open}
         hidden={open}
         className={cn(
-          "fixed right-4 z-40 inline-flex items-center gap-2 rounded-full border bg-panel/95 px-4 py-2.5 font-mono text-[12px] uppercase tracking-wider text-text shadow-[0_8px_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-colors sm:right-6",
+          "fixed right-4 z-40 inline-flex items-center gap-2 rounded-full border bg-panel/95 px-4 py-2.5 font-mono text-meta uppercase tracking-wider text-text shadow-[0_8px_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-colors sm:right-6",
           "bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:bottom-6",
           telemetry ? "border-cyan/50 hover:border-cyan" : "border-amber/50 hover:border-amber",
         )}
@@ -138,10 +138,10 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
             <header className="flex items-center gap-3 border-b border-rule px-4 py-3">
               <EquipmentAvatar profile={profile} size="sm" />
               <div className="min-w-0 flex-1">
-                <h2 id={titleId} className="truncate text-[14px] text-text">
+                <h2 id={titleId} className="truncate text-body-sm text-text">
                   {profile.displayName}
                 </h2>
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">
                   AI voice · {telemetry ? "telemetry readout" : "story channel"}
                 </p>
               </div>
@@ -164,7 +164,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
             >
               {messages.length === 0 ? (
                 <div className="space-y-3">
-                  <p className={cn("text-[15px] leading-relaxed text-text/90", telemetry ? "font-mono text-[12px]" : "font-serif text-[17px]")}>
+                  <p className={cn("text-body leading-relaxed text-text/90", telemetry ? "font-mono text-meta" : "font-serif text-[17px]")}>
                     {telemetry ? `> CHANNEL OPEN: ${profile.shortName.toUpperCase()}. AWAITING QUERY.` : profile.tagline}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -173,7 +173,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                         key={s}
                         type="button"
                         onClick={() => send(s)}
-                        className="rounded-full border border-rule px-3 py-1.5 text-left text-[12px] text-muted hover:border-muted hover:text-text"
+                        className="rounded-full border border-rule px-3 py-1.5 text-left text-meta text-muted hover:border-muted hover:text-text"
                       >
                         {s}
                       </button>
@@ -185,10 +185,10 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                   <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
                     <p
                       className={cn(
-                        "max-w-[85%] whitespace-pre-wrap rounded-[3px] px-3 py-2 text-[14px] leading-relaxed",
+                        "max-w-[85%] whitespace-pre-wrap rounded-[3px] px-3 py-2 text-body-sm leading-relaxed",
                         m.role === "user"
                           ? "bg-rule/70 text-text"
-                          : cn("border border-rule bg-void/60 text-text/95", telemetry ? "font-mono text-[12px]" : "font-serif text-[16px]"),
+                          : cn("border border-rule bg-void/60 text-text/95", telemetry ? "font-mono text-meta" : "font-serif text-body-lg"),
                       )}
                     >
                       <span className="sr-only">{m.role === "user" ? "You: " : `${profile.displayName}: `}</span>
@@ -204,7 +204,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                 ))
               )}
               {error ? (
-                <p role="alert" className="font-mono text-[12px] text-rust">
+                <p role="alert" className="font-mono text-meta text-rust">
                   {error}
                 </p>
               ) : null}
@@ -234,7 +234,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                   }
                 }}
                 placeholder={`Ask ${profile.displayName} something…`}
-                className="max-h-32 min-h-9 flex-1 resize-none rounded-[2px] border border-rule bg-void/60 px-3 py-2 text-[14px] text-text placeholder:text-muted focus:border-muted focus:outline-none"
+                className="max-h-32 min-h-9 flex-1 resize-none rounded-[2px] border border-rule bg-void/60 px-3 py-2 text-body-sm text-text placeholder:text-muted focus:border-muted focus:outline-none"
               />
               {streaming ? (
                 <button
@@ -259,7 +259,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                 </button>
               )}
             </form>
-            <p className="px-4 pb-3 font-mono text-[10px] leading-snug text-muted">
+            <p className="px-4 pb-3 font-mono text-micro leading-snug text-muted">
               AI-generated character, not a real transmission. Facts come from the public mission record and can still be wrong.
             </p>
           </motion.section>

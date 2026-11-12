@@ -22,7 +22,7 @@ export function Button({
   return (
     <button
       className={clsx(
-        "inline-flex min-h-8 items-center justify-center rounded-[2px] px-4 font-mono text-xs uppercase tracking-wider",
+        "inline-flex min-h-8 items-center justify-center rounded-[2px] px-4 font-mono text-meta uppercase tracking-wider",
         variantClasses[variant],
         className,
       )}

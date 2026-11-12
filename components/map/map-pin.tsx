@@ -48,7 +48,7 @@ export function MapPin({
       {group.profiles.length > 1 ? (
         <span
           aria-hidden
-          className="absolute -right-1.5 -top-1.5 rounded-full bg-text px-1 font-mono text-[10px] leading-[14px] text-void"
+          className="absolute -right-1.5 -top-1.5 rounded-full bg-text px-1 font-mono text-micro leading-[14px] text-void"
         >
           {group.profiles.length}
         </span>
@@ -56,7 +56,7 @@ export function MapPin({
       <span
         aria-hidden
         className={cn(
-          "pointer-events-none absolute hidden whitespace-nowrap rounded-[2px] bg-void/80 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider sm:block",
+          "pointer-events-none absolute hidden whitespace-nowrap rounded-[2px] bg-void/80 px-1.5 py-0.5 font-mono text-micro uppercase tracking-wider sm:block",
           group.labelSide === "left" ? "right-full mr-1.5" : "left-full ml-1.5",
           selected ? "text-text" : "text-text/70",
         )}
