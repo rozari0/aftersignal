@@ -20,7 +20,7 @@ export const opportunity = {
   relations: [
     { id: "spirit", label: "twin" },
     { id: "sojourner", label: "grandparent" },
-    { id: "ingenuity", label: "successor's passenger" },
+    { id: "ingenuity", label: "airborne successor" },
   ],
   telemetry: {
     missionName: "Mars Exploration Rover B",

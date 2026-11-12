@@ -21,11 +21,14 @@ export function PostCard({
   post,
   commentLimit,
   onHashtag,
+  hideStrip = false,
 }: {
   post: SocialPost;
   /** Top-level comments shown before "+ N more". Omit to show the whole thread. */
   commentLimit?: number;
   onHashtag?: (tag: string) => void;
+  /** Hide the per-post instrument strip where the page already shows the profile's status bar. */
+  hideStrip?: boolean;
 }) {
   const { resolvePostMode } = useDisplayMode();
   const mode = resolvePostMode(post.id);
@@ -65,7 +68,7 @@ export function PostCard({
         >
           {telemetry ? (
             <>
-              <TelemetryStrip profile={profile} />
+              {hideStrip ? null : <TelemetryStrip profile={profile} />}
               <div className="scanlines -mx-1 rounded-[2px] px-1 py-1">
                 <TelemetryBody telemetry={post.telemetry} />
               </div>

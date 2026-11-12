@@ -1,6 +1,6 @@
-import { BadgeCheck } from "lucide-react";
 import Link from "next/link";
 import { EquipmentAvatar } from "@/components/equipment/equipment-avatar";
+import { VerifiedBadge } from "@/components/equipment/verified-badge";
 import { profileById } from "@/data";
 import type { Comment } from "@/data/types";
 import { formatMissionDate } from "@/lib/format";
@@ -29,7 +29,7 @@ export function CommentItem({ comment }: { comment: Comment }) {
               <Link href={`/equipment/${profile.id}`} className="font-semibold text-text hover:underline">
                 {profile.displayName}
               </Link>
-              <BadgeCheck aria-label="Verified hardware" size={13} className="text-cyan" />
+              <VerifiedBadge />
               <span className="font-mono text-[11px] text-muted">@{profile.handle}</span>
             </>
           ) : (

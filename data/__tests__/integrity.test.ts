@@ -62,6 +62,20 @@ describe("profile integrity", () => {
     }
   });
 
+  it("has the expected cross-mission relations", () => {
+    for (const profile of profiles) {
+      for (const relation of profile.relations ?? []) {
+        expect(profileById[relation.id], `${profile.id} -> ${relation.id}`).toBeDefined();
+        expect(relation.id, profile.id).not.toBe(profile.id);
+      }
+    }
+    expect(profileById.opportunity.relations?.some((r) => r.id === "sojourner")).toBe(true);
+    expect(profileById.sojourner.relations?.some((r) => r.id === "opportunity")).toBe(true);
+    expect(
+      profileById["apollo-11-descent-stage"].relations?.some((r) => r.id === "apollo-11-retroreflector"),
+    ).toBe(true);
+  });
+
   it("vendors every image with a NASA credit", () => {
     for (const image of profiles.flatMap((p) => [p.avatar, p.cover])) {
       expect(image.src.startsWith("/images/")).toBe(true);
