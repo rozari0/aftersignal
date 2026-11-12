@@ -15,10 +15,10 @@ export function ComponentTable({ components, totalMassKg }: { components: Salvag
         ))}
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[520px] border-collapse font-mono text-[12px]">
+        <table className="w-full min-w-[520px] border-collapse font-mono text-meta">
           <caption className="sr-only">Component breakdown by material, mass, condition and reuse</caption>
           <thead>
-            <tr className="border-b border-rule text-left text-[10px] uppercase tracking-wider text-muted">
+            <tr className="border-b border-rule text-left text-micro uppercase tracking-wider text-muted">
               <th scope="col" className="py-1.5 pr-3 font-normal">Material</th>
               <th scope="col" className="py-1.5 pr-3 text-right font-normal">Mass</th>
               <th scope="col" className="py-1.5 pr-3 font-normal">Condition</th>

@@ -15,10 +15,10 @@ export function PinPreview({ profiles, onClose }: { profiles: EquipmentProfile[]
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 id="pin-preview-heading" aria-live="polite" className="font-mono text-[12px] uppercase tracking-[0.12em] text-text">
+          <h2 id="pin-preview-heading" aria-live="polite" className="font-mono text-meta uppercase tracking-[0.12em] text-text">
             {site.siteName}
           </h2>
-          <p className="font-mono text-[11px] text-muted">
+          <p className="font-mono text-label text-muted">
             {site.region} · {formatSiteCoords(profiles[0])}
           </p>
         </div>
@@ -36,16 +36,16 @@ export function PinPreview({ profiles, onClose }: { profiles: EquipmentProfile[]
           <li key={p.id} className="flex gap-3">
             <EquipmentAvatar profile={p} />
             <div className="min-w-0 flex-1 space-y-1">
-              <p className="text-[14px] font-semibold text-text">
-                {p.displayName} <span className="font-mono text-[11px] font-normal text-muted">@{p.handle}</span>
+              <p className="text-body-sm font-semibold text-text">
+                {p.displayName} <span className="font-mono text-label font-normal text-muted">@{p.handle}</span>
               </p>
-              <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
+              <p className="font-mono text-micro uppercase tracking-wider text-muted">
                 {statusLabel(p.status)} · Active {formatActive(p)}
               </p>
-              <p className="text-[12px] leading-snug text-muted">{p.telemetry.purpose}</p>
+              <p className="text-meta leading-snug text-muted">{p.telemetry.purpose}</p>
               <Link
                 href={`/equipment/${p.id}`}
-                className="inline-flex items-center gap-1 rounded-[2px] font-mono text-[11px] uppercase tracking-wider text-amber hover:text-text"
+                className="inline-flex items-center gap-1 rounded-[2px] font-mono text-label uppercase tracking-wider text-amber hover:text-text"
               >
                 Open telemetry bio <ArrowUpRight aria-hidden size={12} />
               </Link>

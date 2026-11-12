@@ -18,7 +18,7 @@ export function PostModeToggle({ postId }: { postId: string }) {
       onClick={() => setOverride(postId, nextOverride(state))}
       title="Cycle this post: auto → story → telemetry"
       className={cn(
-        "rounded-[2px] border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider transition-colors",
+        "rounded-[2px] border px-1.5 py-0.5 font-mono text-micro uppercase tracking-wider transition-colors",
         state === "inherit" && "border-rule text-muted hover:border-muted hover:text-text",
         state === "story" && "border-amber/60 text-amber",
         state === "telemetry" && "border-cyan/60 text-cyan",

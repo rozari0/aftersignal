@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="border-t border-rule">
-      <div className="mx-auto grid w-full max-w-[1180px] gap-4 px-4 py-8 font-mono text-[11px] leading-relaxed text-muted sm:grid-cols-[1fr_auto]">
+      <div className="mx-auto grid w-full max-w-[1180px] gap-4 px-4 py-8 font-mono text-label leading-relaxed text-muted sm:grid-cols-[1fr_auto]">
         <div className="space-y-2">
           <p className="tracking-[0.2em] text-text">AFTERSIGNAL</p>
           <p className="max-w-xl">

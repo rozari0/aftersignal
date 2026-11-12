@@ -27,7 +27,7 @@ export function Feed() {
       <div className="min-w-0 space-y-4">
         <FilterBar filters={filters} onChange={setFilters} />
 
-        <div className="flex min-h-7 flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-wider text-muted">
+        <div className="flex min-h-7 flex-wrap items-center gap-3 font-mono text-label uppercase tracking-wider text-muted">
           <span aria-live="polite">
             {visible.length} {visible.length === 1 ? "transmission" : "transmissions"}
           </span>
@@ -51,8 +51,8 @@ export function Feed() {
 
         {visible.length === 0 ? (
           <div className="space-y-3 rounded-[3px] border border-dashed border-rule p-8 text-center">
-            <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">No signal on this frequency</p>
-            <p className="text-[14px] text-muted">Nothing matches every filter at once. Widen the search.</p>
+            <p className="font-mono text-meta uppercase tracking-[0.14em] text-muted">No signal on this frequency</p>
+            <p className="text-body-sm text-muted">Nothing matches every filter at once. Widen the search.</p>
             <Button variant="ghost" onClick={() => setFilters(DEFAULT_FILTERS)}>
               Reset filters
             </Button>

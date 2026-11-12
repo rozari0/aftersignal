@@ -12,6 +12,38 @@
   --color-silver: #b9c4cf;
 }
 
+/*
+ * UI type roles. Sizes live in --type-* vars so the whole
+ * ramp changes in one place. Serif reading sizes stay per-component.
+ *   micro    uppercase kickers, table heads, pin labels
+ *   label    nav, filters, metadata rows, badges
+ *   meta     handles, hashtags, buttons, mono readouts
+ *   small    names in lists, dense mono prose
+ *   body-sm  comments, chat, secondary prose
+ *   body     page intros, card titles
+ *   body-lg  status-bar values
+ */
+@theme inline {
+  --text-micro: var(--type-micro);
+  --text-label: var(--type-label);
+  --text-meta: var(--type-meta);
+  --text-small: var(--type-small);
+  --text-body-sm: var(--type-body-sm);
+  --text-body: var(--type-body);
+  --text-body-lg: var(--type-body-lg);
+}
+
+/* 12 / 13 / 14 / 15 / 16 / 17 / 18 px: the mono chrome reads at a glance, prose sits at 16px+. */
+:root {
+  --type-micro: 0.75rem;
+  --type-label: 0.8125rem;
+  --type-meta: 0.875rem;
+  --type-small: 0.9375rem;
+  --type-body-sm: 1rem;
+  --type-body: 1.0625rem;
+  --type-body-lg: 1.125rem;
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;

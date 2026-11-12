@@ -32,7 +32,7 @@ export function PostHeader({
             href={href}
             className={cn(
               "truncate hover:underline",
-              telemetry ? "font-mono text-[13px] uppercase tracking-wider text-text" : "font-semibold text-text",
+              telemetry ? "font-mono text-small uppercase tracking-wider text-text" : "font-semibold text-text",
             )}
           >
             {telemetry && profile.shortName !== profile.displayName
@@ -40,14 +40,14 @@ export function PostHeader({
               : profile.displayName}
           </Link>
           {telemetry ? (
-            <span className={cn("font-mono text-[10px] uppercase tracking-wider", STATUS_TEXT[profile.status])}>
+            <span className={cn("font-mono text-micro uppercase tracking-wider", STATUS_TEXT[profile.status])}>
               {statusLabel(profile.status)}
             </span>
           ) : (
-            <span className="font-mono text-[12px] text-muted">@{profile.handle}</span>
+            <span className="font-mono text-meta text-muted">@{profile.handle}</span>
           )}
         </div>
-        <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-muted">
+        <p className="mt-0.5 font-mono text-label uppercase tracking-wider text-muted">
           {telemetry ? (
             <>
               {profile.telemetry.coordinates.siteName}
@@ -65,7 +65,7 @@ export function PostHeader({
       <div className="flex shrink-0 flex-col items-end gap-1.5">
         <PostModeToggle postId={post.id} />
         {telemetry ? (
-          <time dateTime={post.publishedAt} className="font-mono text-[11px] text-muted">
+          <time dateTime={post.publishedAt} className="font-mono text-label text-muted">
             {post.publishedAt}
           </time>
         ) : null}

@@ -27,9 +27,9 @@ export function TelemetryStatusBar({ profile }: { profile: EquipmentProfile }) {
       <dl className="grid grid-cols-1 gap-px min-[480px]:grid-cols-2 lg:grid-cols-3">
         {cells.map((c) => (
           <div key={c.label} className="bg-panel px-4 py-3">
-            <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">{c.label}</dt>
-            <dd className="mt-1 font-mono text-[16px] text-text">{c.value}</dd>
-            {c.note ? <dd className="mt-0.5 font-mono text-[11px] leading-snug text-muted">{c.note}</dd> : null}
+            <dt className="font-mono text-micro uppercase tracking-[0.14em] text-muted">{c.label}</dt>
+            <dd className="mt-1 font-mono text-body-lg text-text">{c.value}</dd>
+            {c.note ? <dd className="mt-0.5 font-mono text-label leading-snug text-muted">{c.note}</dd> : null}
           </div>
         ))}
       </dl>

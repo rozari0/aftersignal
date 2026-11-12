@@ -21,7 +21,7 @@ function ChipRow<K extends "planet" | "era" | "status">({
 }) {
   return (
     <div role="group" aria-label={label} className="flex flex-wrap items-center gap-x-1 gap-y-1.5">
-      <span className="w-full font-mono text-[10px] uppercase tracking-[0.14em] text-muted sm:w-32">{label}</span>
+      <span className="w-full font-mono text-micro uppercase tracking-[0.14em] text-muted sm:w-32">{label}</span>
       {options.map((opt) => {
         const active = filters[field] === opt.value;
         return (
@@ -32,7 +32,7 @@ function ChipRow<K extends "planet" | "era" | "status">({
             title={opt.hint}
             onClick={() => onChange({ ...filters, [field]: opt.value })}
             className={cn(
-              "rounded-[2px] border-b px-2 py-1 font-mono text-[11px] tracking-wider transition-colors",
+              "rounded-[2px] border-b px-2 py-1 font-mono text-label tracking-wider transition-colors",
               opt.keepCase ? "normal-case" : "uppercase",
               active ? "border-amber text-amber" : "border-transparent text-muted hover:text-text",
             )}

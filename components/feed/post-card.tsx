@@ -52,7 +52,7 @@ export function PostCard({
         {profile.displayName}, {post.publishedAt}
       </h2>
       {post.pinned ? (
-        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-amber">
+        <p className="font-mono text-micro uppercase tracking-[0.14em] text-amber">
           {post.topic === "last-signal" ? "Pinned · Last known signal" : "Pinned"}
         </p>
       ) : null}
@@ -74,7 +74,7 @@ export function PostCard({
               {post.media ? <PostMedia media={post.media} muted /> : null}
               {log.length ? (
                 <div className="space-y-2">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Mission log · as of this entry</p>
+                  <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">Mission log · as of this entry</p>
                   <MissionLog entries={log} limit={3} />
                 </div>
               ) : null}

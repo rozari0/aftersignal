@@ -33,7 +33,7 @@ export function ProfileHeader({ profile, mode }: { profile: EquipmentProfile; mo
           style={{ objectPosition: profile.cover.focus }}
         />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-panel via-panel/20 to-transparent" />
-        <p className="absolute right-3 top-3 rounded-[2px] bg-void/70 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted">
+        <p className="absolute right-3 top-3 rounded-[2px] bg-void/70 px-2 py-0.5 font-mono text-micro uppercase tracking-wider text-muted">
           {profile.cover.credit}
           {profile.cover.nasaId ? ` · ${profile.cover.nasaId}` : ""}
         </p>
@@ -54,7 +54,7 @@ export function ProfileHeader({ profile, mode }: { profile: EquipmentProfile; mo
               </h1>
               <VerifiedBadge size={18} />
             </div>
-            <p className="font-mono text-[12px] text-muted">
+            <p className="font-mono text-meta text-muted">
               @{profile.handle}
               <span className="mx-1.5 text-rule">/</span>
               {profile.shortName}
@@ -62,7 +62,7 @@ export function ProfileHeader({ profile, mode }: { profile: EquipmentProfile; mo
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-wider">
+        <div className="flex flex-wrap items-center gap-2 font-mono text-micro uppercase tracking-wider">
           <span className={cn("rounded-full border px-2.5 py-0.5", STATUS_PILL[profile.status])}>
             {statusLabel(profile.status)}
           </span>
@@ -75,7 +75,7 @@ export function ProfileHeader({ profile, mode }: { profile: EquipmentProfile; mo
         </div>
 
         {telemetry ? (
-          <p className="font-mono text-[13px] leading-relaxed text-text/90">
+          <p className="font-mono text-small leading-relaxed text-text/90">
             {profile.telemetry.missionName}
             <span className="mx-1.5 text-rule">/</span>
             <span className="text-muted">{profile.telemetry.agency}</span>

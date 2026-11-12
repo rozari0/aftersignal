@@ -61,7 +61,7 @@ export function SurfaceMap() {
               aria-pressed={planet === p.id}
               onClick={() => switchPlanet(p.id)}
               className={cn(
-                "rounded-[2px] border-b px-2 py-1 font-mono text-[11px] uppercase tracking-wider transition-colors",
+                "rounded-[2px] border-b px-2 py-1 font-mono text-label uppercase tracking-wider transition-colors",
                 planet === p.id ? "border-amber text-amber" : "border-transparent text-muted hover:text-text",
               )}
             >
@@ -69,7 +69,7 @@ export function SurfaceMap() {
             </button>
           ))}
         </div>
-        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-cyan">
+        <p className="font-mono text-micro uppercase tracking-[0.14em] text-cyan">
           Always telemetry · Ghost Mode does not change this view
         </p>
         <div className="ml-auto flex items-center gap-1" role="group" aria-label="Map zoom">
@@ -79,7 +79,7 @@ export function SurfaceMap() {
           <button type="button" onClick={() => zoomButton(1 / 1.4)} disabled={view.zoom <= 1} aria-label="Zoom out" className="flex h-8 w-8 items-center justify-center rounded-[2px] border border-rule text-muted hover:text-text disabled:opacity-40">
             <Minus aria-hidden size={14} />
           </button>
-          <button type="button" onClick={() => setView(RESET)} aria-label="Reset map view" className="flex h-8 items-center gap-1.5 rounded-[2px] border border-rule px-2 font-mono text-[10px] uppercase tracking-wider text-muted hover:text-text">
+          <button type="button" onClick={() => setView(RESET)} aria-label="Reset map view" className="flex h-8 items-center gap-1.5 rounded-[2px] border border-rule px-2 font-mono text-micro uppercase tracking-wider text-muted hover:text-text">
             <RotateCcw aria-hidden size={12} /> Reset
           </button>
         </div>
@@ -103,7 +103,7 @@ export function SurfaceMap() {
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
         <section aria-labelledby="hardware-list" className="space-y-2">
-          <h2 id="hardware-list" className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+          <h2 id="hardware-list" className="font-mono text-micro uppercase tracking-[0.14em] text-muted">
             Resting on {planet === "moon" ? "the Moon" : "Mars"} · {bodyProfiles.length}
           </h2>
           <ul className="grid gap-px overflow-hidden rounded-[3px] border border-rule bg-rule sm:grid-cols-2">
@@ -119,8 +119,8 @@ export function SurfaceMap() {
                   >
                     <span aria-hidden className={cn("mt-1.5 h-2 w-2 shrink-0 rounded-full", STATUS_DOT[p.status])} />
                     <span className="min-w-0">
-                      <span className="block text-[13px] text-text">{p.displayName}</span>
-                      <span className="block font-mono text-[11px] uppercase tracking-wider text-muted">
+                      <span className="block text-small text-text">{p.displayName}</span>
+                      <span className="block font-mono text-label uppercase tracking-wider text-muted">
                         {p.telemetry.coordinates.siteName} · {formatSiteCoords(p)}
                       </span>
                     </span>
@@ -130,8 +130,8 @@ export function SurfaceMap() {
             })}
           </ul>
         </section>
-        <aside className="space-y-3 font-mono text-[12px] text-muted">
-          <h2 className="text-[10px] uppercase tracking-[0.14em]">Legend</h2>
+        <aside className="space-y-3 font-mono text-meta text-muted">
+          <h2 className="text-micro uppercase tracking-[0.14em]">Legend</h2>
           <ul className="space-y-1">
             {STATUSES.map((s) => (
               <li key={s.id} className="flex items-center gap-2">

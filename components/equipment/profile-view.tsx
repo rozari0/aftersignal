@@ -20,7 +20,7 @@ import { TelemetryStatusBar } from "./telemetry-status-bar";
 type Neighbour = Pick<EquipmentProfile, "id" | "displayName">;
 
 const Label = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">{children}</h2>
+  <h2 className="font-mono text-label uppercase tracking-[0.14em] text-muted">{children}</h2>
 );
 
 export function ProfileView({
@@ -58,9 +58,9 @@ export function ProfileView({
               <div className="min-w-0 space-y-6">
                 <section className="scanlines space-y-3 rounded-[3px] border border-cyan/20 bg-panel/70 p-4 sm:p-5">
                   <Label>Engineering purpose</Label>
-                  <p className="font-mono text-[13px] leading-relaxed text-text/90">{t.purpose}</p>
+                  <p className="font-mono text-small leading-relaxed text-text/90">{t.purpose}</p>
                   <Label>Heritage status</Label>
-                  <p className="font-mono text-[13px] leading-relaxed text-text/90">{t.heritageStatus}</p>
+                  <p className="font-mono text-small leading-relaxed text-text/90">{t.heritageStatus}</p>
                 </section>
                 <section className="space-y-3">
                   <Label>Instrument readings</Label>
@@ -75,7 +75,7 @@ export function ProfileView({
                 <Label>Sources · {t.sources.length}</Label>
                 <ol className="space-y-2.5">
                   {t.sources.map((s, i) => (
-                    <li key={s.url} className="flex gap-2 font-mono text-[12px] leading-snug">
+                    <li key={s.url} className="flex gap-2 font-mono text-meta leading-snug">
                       <span className="text-muted">{String(i + 1).padStart(2, "0")}</span>
                       <a href={s.url} target="_blank" rel="noreferrer" className="text-cyan hover:underline">
                         {s.label} ↗
@@ -127,10 +127,10 @@ export function ProfileView({
         >
           <Recycle aria-hidden size={20} className="shrink-0 text-amber" />
           <span className="min-w-0 flex-1">
-            <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+            <span className="block font-mono text-micro uppercase tracking-[0.14em] text-muted">
               Upcycle Me · {salvage.availability} · {formatMass(salvage.totalMassKg)}
             </span>
-            <span className="block truncate text-[15px] text-text group-hover:underline">{salvage.title}</span>
+            <span className="block truncate text-body text-text group-hover:underline">{salvage.title}</span>
           </span>
           <ArrowRight aria-hidden size={16} className="shrink-0 text-muted" />
         </Link>
@@ -140,21 +140,21 @@ export function ProfileView({
         <Link
           href={`/equipment/${prev.id}`}
           rel="prev"
-          className="group flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-muted hover:text-text"
+          className="group flex items-center gap-2 font-mono text-label uppercase tracking-wider text-muted hover:text-text"
         >
           <ArrowLeft aria-hidden size={14} />
           <span>
-            <span className="block text-[10px]">Previous</span>
+            <span className="block text-micro">Previous</span>
             <span className="text-text group-hover:underline">{prev.displayName}</span>
           </span>
         </Link>
         <Link
           href={`/equipment/${next.id}`}
           rel="next"
-          className="group flex items-center gap-2 text-right font-mono text-[11px] uppercase tracking-wider text-muted hover:text-text"
+          className="group flex items-center gap-2 text-right font-mono text-label uppercase tracking-wider text-muted hover:text-text"
         >
           <span>
-            <span className="block text-[10px]">Next</span>
+            <span className="block text-micro">Next</span>
             <span className="text-text group-hover:underline">{next.displayName}</span>
           </span>
           <ArrowRight aria-hidden size={14} />

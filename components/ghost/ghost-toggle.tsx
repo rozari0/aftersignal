@@ -15,7 +15,7 @@ export function GhostToggle() {
       aria-checked={telemetry}
       aria-label="Ghost Mode: switch between story and telemetry"
       onClick={toggle}
-      className="group ml-auto flex items-center gap-2.5 rounded-[2px] px-1 py-1 font-mono text-[11px] uppercase tracking-wider"
+      className="group ml-auto flex items-center gap-2.5 rounded-[2px] px-1 py-1 font-mono text-label uppercase tracking-wider"
     >
       <span className="hidden text-muted transition-colors group-hover:text-text sm:inline">Ghost Mode</span>
       <span
