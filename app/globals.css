@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
+@theme {
+  --color-void: #06080d;
+  --color-panel: #0c1118;
+  --color-rule: #1c2530;
+  --color-text: #e9e5da;
+  --color-muted: #8c97a3;
+  --color-amber: #f5a524;
+  --color-cyan: #5ad2e6;
+  --color-rust: #c4553b;
+  --color-silver: #b9c4cf;
+}
+
+/*
+ * UI type roles. Sizes live in --type-* vars so the whole
+ * ramp changes in one place. Serif reading sizes stay per-component.
+ *   micro    uppercase kickers, table heads, pin labels
+ *   label    nav, filters, metadata rows, badges
+ *   meta     handles, hashtags, buttons, mono readouts
+ *   small    names in lists, dense mono prose
+ *   body-sm  comments, chat, secondary prose
+ *   body     page intros, card titles
+ *   body-lg  status-bar values
+ */
+@theme inline {
+  --text-micro: var(--type-micro);
+  --text-label: var(--type-label);
+  --text-meta: var(--type-meta);
+  --text-small: var(--type-small);
+  --text-body-sm: var(--type-body-sm);
+  --text-body: var(--type-body);
+  --text-body-lg: var(--type-body-lg);
+}
+
+/* 12 / 13 / 14 / 15 / 16 / 17 / 18 px: the mono chrome reads at a glance, prose sits at 16px+. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --type-micro: 0.75rem;
+  --type-label: 0.8125rem;
+  --type-meta: 0.875rem;
+  --type-small: 0.9375rem;
+  --type-body-sm: 1rem;
+  --type-body: 1.0625rem;
+  --type-body-lg: 1.125rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-void);
+  color: var(--color-text);
+  font-family: var(--font-geist-sans);
+}
+
+/* Fixed background layer: faint star dots at two scales, plus a 32px grid. */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(28, 37, 48, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 37, 48, 0.04) 1px, transparent 1px),
+    radial-gradient(rgba(185, 196, 207, 0.35) 1px, transparent 1px),
+    radial-gradient(rgba(185, 196, 207, 0.2) 1.5px, transparent 1.5px);
+  background-size:
+    32px 32px,
+    32px 32px,
+    220px 220px,
+    460px 460px;
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-void);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Telemetry panels: faint CRT scanlines, only behind instrument readouts. */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(90, 210, 230, 0.035) 0px,
+    rgba(90, 210, 230, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
