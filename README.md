@@ -9,7 +9,7 @@ Built for the 2026 NASA Space Apps Challenge, *Abandoned but not Forgotten: Stor
 | Route | What it does |
 |---|---|
 | `/` | The feed. Filter by planetary body, mission era and status, or click a hashtag. Pinned "last known signal" posts lead. |
-| `/equipment/[id]` | Telemetry bio for each of the 10 machines: status bar, last known signal, posts, cross-mission threads, relations. |
+| `/equipment/[id]` | Telemetry bio for each of the 10 machines: status bar, last known signal, posts, cross-mission threads, relations, and a **Talk to …** AI chat in that machine's voice. |
 | `/salvage` | **Upcycle Me.** Classified ads for salvageable materials, framed around NASA's In-Situ Resource Utilization (ISRU) work. |
 | `/locator` | Surface locator. Moon and Mars equirectangular maps with pins from real coordinates, pan and zoom. |
 
@@ -25,7 +25,23 @@ npm run typecheck
 npm run build      # every route prerenders statically
 ```
 
-No environment variables, database or API keys are needed. Every asset is vendored, so the app makes no runtime API calls.
+Everything except the AI chat runs with no environment variables, database or API keys. Every asset is vendored.
+
+### AI chat (optional)
+
+Each profile page has a **Talk to …** button that opens an in-character chat. Replies stream from DeepSeek through `app/api/chat/route.ts`; the key stays on the server.
+
+```bash
+cp .env.example .env.local   # then set DEEPSEEK_API_KEY
+```
+
+| Variable | Default | |
+|---|---|---|
+| `DEEPSEEK_API_KEY` | (none) | Required. Without it the chat answers "channel isn't configured". |
+| `DEEPSEEK_MODEL` | `deepseek-chat` | Any DeepSeek chat model id. |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | Any OpenAI-compatible endpoint. |
+
+Each machine's character prompt is hard-coded in `data/personas.ts`. `lib/chat/prompt.ts` appends a fact sheet built from the profile data, the shared rules, and the visitor's Ghost Mode (Telemetry Mode answers like an instrument readout). Requests are capped at 20 turns of 1,000 characters each. Conversations are not stored. There's no rate limiting, so set a spend limit on the DeepSeek key before sharing the URL.
 
 **Stack:** Next.js 16 (App Router, Cache Components), React 19, TypeScript, Tailwind CSS 4, Motion, Lucide icons, Vitest.
 
@@ -34,8 +50,9 @@ No environment variables, database or API keys are needed. Every asset is vendor
 Not deployed from this repo yet. To ship on Vercel:
 
 1. Push the branch and import the repo in the Vercel dashboard (framework preset: Next.js), or run `npx vercel --prod`.
-2. Optional: set `NEXT_PUBLIC_SITE_URL` to the production URL so social-card links are absolute. Without it, Vercel's `VERCEL_PROJECT_PRODUCTION_URL` is used.
-3. Open the production URL on a phone and check `/`, `/salvage`, `/locator`, one profile, and `/opengraph-image`.
+2. For the AI chat, add `DEEPSEEK_API_KEY` (and optionally `DEEPSEEK_MODEL`) under Project Settings → Environment Variables.
+3. Optional: set `NEXT_PUBLIC_SITE_URL` to the production URL so social-card links are absolute. Without it, Vercel's `VERCEL_PROJECT_PRODUCTION_URL` is used.
+4. Open the production URL on a phone and check `/`, `/salvage`, `/locator`, one profile, and `/opengraph-image`.
 
 ## Project layout
 
@@ -43,7 +60,9 @@ Not deployed from this repo yet. To ship on Vercel:
 app/            routes, metadata, opengraph-image, not-found
 components/     feed/, ghost/, equipment/, comments/, salvage/, map/, layout/, ui/
 data/           typed content: profiles/, posts.ts, comments.ts, salvage.ts, media.ts, maps.ts, taxonomy.ts
-lib/            filters, geo projection and map clamps, pin grouping, mode store, formatting
+app/api/chat/   DeepSeek streaming proxy for the profile chat
+data/personas.ts  hard-coded character prompt per machine
+lib/            filters, geo projection and map clamps, pin grouping, mode store, formatting, chat/
 public/images/  vendored NASA imagery (WebP)
 ```
 

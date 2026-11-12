@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Recycle } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useCrossfade } from "@/lib/motion";
 import Link from "next/link";
+import { EquipmentChat } from "@/components/chat/equipment-chat";
 import { PostCard } from "@/components/feed/post-card";
 import { MissionLog } from "@/components/ghost/mission-log";
 import { useDisplayMode } from "@/components/ghost/mode-provider";
@@ -159,6 +160,8 @@ export function ProfileView({
           <ArrowRight aria-hidden size={14} />
         </Link>
       </nav>
+
+      <EquipmentChat key={profile.id} profile={profile} />
     </div>
   );
 }
