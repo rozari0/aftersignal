@@ -95,7 +95,7 @@ Define `@theme` tokens for the palette and fonts. Add: `body` background void + 
 
 - [ ] **Step 7: Stub the remaining routes**
 
-Each of `/salvage`, `/locator`, `/equipment/[id]` renders `<h1>` with its name and a `SectionLabel`. The dynamic stub signature is:
+Each of `/salvage`, `/locator`, `/equipment/[id]` renders `<h1>` with its name and a `SectionLabel`. `app/not-found.tsx` renders a minimal `SIGNAL LOST` block with a link home; Task 14 styles it. The dynamic stub signature is:
 
 ```tsx
 export default async function Page({ params }: PageProps<"/equipment/[id]">) {
@@ -345,7 +345,7 @@ git commit -m "feat: add Opportunity, Ingenuity, and Surveyor 3 telemetry profil
 ### Task 4: Featured profiles II and catalog
 
 **Files:**
-- Create: `data/profiles/apollo-11-descent-stage.ts`, `data/profiles/apollo-11-retroreflector.ts`, `data/profiles/sojourner.ts`, `data/profiles/catalog.ts`
+- Create: `data/profiles/apollo-11-descent-stage.ts`, `data/profiles/apollo-11-retroreflector.ts`, `data/profiles/sojourner.ts`, `data/profiles/catalog.ts`, `public/images/equipment/*.webp`
 - Modify: `data/index.ts`, `data/__tests__/integrity.test.ts`
 - Test: `data/__tests__/integrity.test.ts`
 
@@ -389,6 +389,8 @@ Expected: FAIL, expected 6 received 3.
 
 Descent stage readings: `Residual propellant unknown`, `Landing legs 4`, `Plaque "We came in peace..." yes`. LRRS: `Corner cubes 100`, `Power required 0 W`, `Years returning signal 56`. Sojourner: `Distance driven ~100 m`, `Sols operated 83`, `Designed lifetime 7 sols`.
 
+Stage avatar and cover art for these three profiles with the same rule as Task 3 (public-domain NASA/JPL still, WebP, max 1600px, real credit + NASA ID).
+
 - [ ] **Step 4: Add the four catalog profiles**
 
 `catalog.ts` exports `export const catalogProfiles: EquipmentProfile[]`:
@@ -400,7 +402,7 @@ Descent stage readings: `Residual propellant unknown`, `Landing legs 4`, `Plaque
 | `insight` / `insight_lander` | InSight / InSight | mars / modern | signal-lost | 358 | 2018-11-26 | 2022-12-15 | 4.502, 135.623 | Elysium Planitia |
 | `apollo-17-lrv` / `lunar_rover_17` | Apollo 17 LRV / LRV-3 | moon / apollo-viking | signal-lost | 210 | 1972-12-11 | null | 20.1908, 30.7717 | Taurus-Littrow |
 
-Catalog profiles use `tier: "catalog"`, `accent: "silver"` (Moon) or `"rust"` (Mars), a 1–2 sentence bio, 2 readings, a 2-entry mission log, and 2+ sources. `pinnedPostId`/`lastSignalPostId` are placeholders filled in Task 5.
+Catalog profiles use `tier: "catalog"`, `accent: "silver"` (Moon) or `"rust"` (Mars), a 1–2 sentence bio, 2 readings, a 2-entry mission log, and 2+ sources. Each also gets avatar + cover art (reuse a tight crop of a mission still when no dedicated portrait exists). `pinnedPostId`/`lastSignalPostId` are placeholders filled in Task 5.
 
 - [ ] **Step 5: Extend `data/index.ts`**
 
