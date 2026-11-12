@@ -1,5 +1,3 @@
 export function Panel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-[3px] border border-rule bg-panel">{children}</div>
-  );
+  return <div className="nb-card bg-panel">{children}</div>;
 }

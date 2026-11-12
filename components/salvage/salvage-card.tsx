@@ -41,12 +41,12 @@ export function SalvageCard({
       id={listing.id}
       aria-labelledby={`${listing.id}-title`}
       className={cn(
-        "flex min-w-0 scroll-mt-20 flex-col gap-4 rounded-[3px] border bg-panel/70 p-4 target:border-amber/70 sm:p-5",
-        telemetry ? "border-cyan/20" : "border-rule",
+        "nb-card flex min-w-0 scroll-mt-24 flex-col gap-4 p-4 target:shadow-nb-xl target:outline-4 target:outline-amber sm:p-5",
+        telemetry ? "bg-cyan-wash" : "bg-panel",
       )}
     >
       <header className="space-y-2">
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-micro uppercase tracking-[0.14em] text-muted">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-micro font-bold uppercase tracking-wider text-muted">
           <span>
             {telemetry ? "Salvage manifest" : "For local pickup"} · {listing.pickup.planet === "moon" ? "🌙 Moon" : "🔴 Mars"}
           </span>
@@ -55,11 +55,11 @@ export function SalvageCard({
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <h2
             id={`${listing.id}-title`}
-            className={cn(telemetry ? "font-mono text-body uppercase tracking-wide" : "font-serif text-[24px] leading-tight", "text-text")}
+            className={cn(telemetry ? "font-mono text-body font-bold uppercase tracking-wide" : "font-head text-[26px] font-bold leading-tight tracking-[-0.02em]", "text-text")}
           >
             {listing.title}
           </h2>
-          <p className={cn("font-mono text-meta", telemetry ? "text-cyan" : "text-amber")}>
+          <p className={cn("border-2 border-rule px-2 py-0.5 font-mono text-meta font-bold text-ink shadow-nb-sm", telemetry ? "bg-cyan" : "bg-amber")}>
             {telemetry ? formatMass(listing.totalMassKg) : listing.askingPrice}
           </p>
         </div>
@@ -75,15 +75,15 @@ export function SalvageCard({
         >
           {telemetry ? (
             <>
-              <div className="scanlines -mx-1 rounded-[2px] px-1 py-1">
+              <div className="border-2 border-rule bg-panel p-3">
                 <ComponentTable components={listing.components} totalMassKg={listing.totalMassKg} />
               </div>
               <div className="space-y-1.5">
-                <h3 className="font-mono text-micro uppercase tracking-[0.14em] text-muted">ISRU applications</h3>
-                <ul className="space-y-1 font-mono text-meta text-text/90">
+                <h3 className="font-head text-label font-bold uppercase tracking-wide text-text">ISRU applications</h3>
+                <ul className="space-y-1 font-mono text-meta text-text">
                   {listing.isruUses.map((use) => (
                     <li key={use} className="flex gap-2">
-                      <span aria-hidden className="text-cyan">›</span>
+                      <span aria-hidden className="font-bold">›</span>
                       {use}
                     </li>
                   ))}
@@ -95,16 +95,16 @@ export function SalvageCard({
             </>
           ) : (
             <>
-              <p className="font-serif text-[18px] leading-[1.5] text-text">{listing.blurb}</p>
-              <p className="text-body-sm leading-relaxed text-muted">
-                <span className="mr-2 rounded-full border border-rule px-2 py-0.5 font-mono text-micro uppercase tracking-wider text-text">
+              <p className="font-head text-[18px] font-medium leading-[1.5] text-text">{listing.blurb}</p>
+              <p className="text-body-sm leading-relaxed text-text">
+                <span className="mr-2 border-2 border-rule bg-lilac px-2 py-0.5 font-mono text-micro font-bold uppercase tracking-wider text-ink">
                   {CONDITION[listing.condition]}
                 </span>
                 {listing.conditionNote}
               </p>
               <div className="space-y-1">
-                <h3 className="font-mono text-micro uppercase tracking-[0.14em] text-muted">Included</h3>
-                <p className="text-small leading-relaxed text-text/85">
+                <h3 className="font-head text-label font-bold uppercase tracking-wide text-text">Included</h3>
+                <p className="text-small leading-relaxed text-text">
                   {listing.components.map((c) => c.material).join(" · ")}
                 </p>
               </div>
@@ -123,11 +123,11 @@ export function SalvageCard({
         />
         <Link
           href={`/equipment/${profile.id}`}
-          className="group flex items-center gap-2 rounded-[2px] font-mono text-label uppercase tracking-wider text-muted hover:text-text"
+          className="group flex items-center gap-2 font-mono text-label uppercase tracking-wider text-text"
         >
           <EquipmentAvatar profile={profile} size="sm" />
           <span>
-            Seller: {profile.displayName} <span className="normal-case tracking-normal">@{profile.handle}</span>
+            Seller: <span className="font-bold group-hover:underline">{profile.displayName}</span> <span className="normal-case tracking-normal">@{profile.handle}</span>
           </span>
           <ArrowUpRight aria-hidden size={13} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </Link>

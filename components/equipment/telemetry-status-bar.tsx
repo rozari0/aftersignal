@@ -23,12 +23,12 @@ export function TelemetryStatusBar({ profile }: { profile: EquipmentProfile }) {
   ];
 
   return (
-    <section aria-label="Telemetry status" className="overflow-hidden rounded-[3px] border border-rule bg-rule">
-      <dl className="grid grid-cols-1 gap-px min-[480px]:grid-cols-2 lg:grid-cols-3">
+    <section aria-label="Telemetry status" className="nb-card overflow-hidden bg-rule">
+      <dl className="grid grid-cols-1 gap-[2px] min-[480px]:grid-cols-2 lg:grid-cols-3">
         {cells.map((c) => (
           <div key={c.label} className="bg-panel px-4 py-3">
-            <dt className="font-mono text-micro uppercase tracking-[0.14em] text-muted">{c.label}</dt>
-            <dd className="mt-1 font-mono text-body-lg text-text">{c.value}</dd>
+            <dt className="font-mono text-micro font-bold uppercase tracking-[0.1em] text-muted">{c.label}</dt>
+            <dd className="mt-1 font-head text-body-lg font-bold tabular-nums text-text">{c.value}</dd>
             {c.note ? <dd className="mt-0.5 font-mono text-label leading-snug text-muted">{c.note}</dd> : null}
           </div>
         ))}

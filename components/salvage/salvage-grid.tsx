@@ -35,9 +35,9 @@ export function SalvageGrid() {
   };
 
   return (
-    <div className="space-y-4">
-      <div role="group" aria-label="Filter listings by planet" className="flex flex-wrap items-center gap-1">
-        <span className="mr-2 font-mono text-micro uppercase tracking-[0.14em] text-muted">Pickup location</span>
+    <div className="space-y-6">
+      <div role="group" aria-label="Filter listings by planet" className="flex flex-wrap items-center gap-1.5">
+        <span className="mr-2 font-head text-label font-bold uppercase tracking-wide text-text">Pickup location</span>
         {FILTERS.map((f) => (
           <button
             key={f.value}
@@ -45,19 +45,19 @@ export function SalvageGrid() {
             aria-pressed={planet === f.value}
             onClick={() => setPlanet(f.value)}
             className={cn(
-              "rounded-[2px] border-b px-2 py-1 font-mono text-label uppercase tracking-wider transition-colors",
-              planet === f.value ? "border-amber text-amber" : "border-transparent text-muted hover:text-text",
+              "border-2 px-2.5 py-1 font-mono text-label font-bold uppercase tracking-wider",
+              planet === f.value ? "border-rule bg-amber text-ink shadow-nb-sm" : "border-transparent text-ink hover:border-rule hover:bg-panel",
             )}
           >
             {f.label}
           </button>
         ))}
-        <span className="ml-auto font-mono text-label uppercase tracking-wider text-muted" aria-live="polite">
+        <span className="ml-auto font-mono text-label font-bold uppercase tracking-wider text-text" aria-live="polite">
           {visible.length} listings
         </span>
       </div>
 
-      <div className="grid gap-4 min-[900px]:grid-cols-2">
+      <div className="grid gap-6 min-[900px]:grid-cols-2">
         {visible.map((listing) => (
           <SalvageCard
             key={listing.id}

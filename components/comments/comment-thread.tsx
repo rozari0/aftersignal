@@ -46,14 +46,14 @@ export function CommentThread({
   };
 
   return (
-    <section aria-label="Cross-mission channel" className="space-y-3 border-t border-rule pt-3">
-      <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">Cross-mission channel</p>
+    <section aria-label="Cross-mission channel" className="space-y-3 border-t-2 border-rule pt-4">
+      <p className="font-head text-label font-bold uppercase tracking-wide text-text">Cross-mission channel</p>
       <ul className="space-y-3">
         {topLevel.slice(0, cap).map((comment) => (
           <li key={comment.id} className="space-y-2.5">
             <CommentItem comment={comment} />
             {repliesTo(comment.id).length ? (
-              <ul className="ml-4 space-y-2.5 border-l border-rule pl-4">
+              <ul className="ml-4 space-y-2.5 border-l-2 border-rule pl-4">
                 {repliesTo(comment.id).map((reply) => (
                   <li key={reply.id}>
                     <CommentItem comment={reply} />
@@ -68,7 +68,7 @@ export function CommentThread({
         <button
           type="button"
           onClick={() => setExpanded(true)}
-          className="rounded-[2px] font-mono text-label uppercase tracking-wider text-muted hover:text-text"
+          className="font-mono text-label font-bold uppercase tracking-wider text-text underline underline-offset-4 hover:bg-amber"
         >
           + {hidden} more {hidden === 1 ? "transmission" : "transmissions"}
         </button>

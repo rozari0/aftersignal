@@ -4,9 +4,9 @@ import { cn } from "@/lib/cn";
 import { formatCoord } from "@/lib/format";
 
 export const AVAILABILITY = {
-  available: { label: "Available", className: "border-amber/70 text-amber" },
-  reserved: { label: "Reserved", className: "border-cyan/70 text-cyan" },
-  claimed: { label: "Claimed", className: "border-muted text-muted" },
+  available: { label: "Available", className: "bg-amber" },
+  reserved: { label: "Reserved", className: "bg-cyan" },
+  claimed: { label: "Claimed", className: "bg-silver" },
 } as const;
 
 export function PickupPanel({
@@ -26,24 +26,24 @@ export function PickupPanel({
   const canReserve = availability === "available" && !reservedByYou;
 
   return (
-    <div className="space-y-3 rounded-[2px] border border-rule bg-void/50 p-3">
+    <div className="space-y-3 border-2 border-rule bg-sunk p-3">
       <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 font-mono text-label">
-        <dt className="uppercase tracking-wider text-muted">Pickup</dt>
+        <dt className="font-bold uppercase tracking-wider text-muted">Pickup</dt>
         <dd className="text-text">
           {pickup.siteName} · {pickup.planet === "moon" ? "Moon" : "Mars"}
         </dd>
-        <dt className="uppercase tracking-wider text-muted">Coords</dt>
+        <dt className="font-bold uppercase tracking-wider text-muted">Coords</dt>
         <dd className="text-text">
           {formatCoord(lat, "lat")} {formatCoord(lon, "lon")}
           {confidence === "approximate" ? <span className="text-muted"> (approx.)</span> : null}
         </dd>
-        <dt className="uppercase tracking-wider text-muted">Access</dt>
-        <dd className="text-muted">{pickup.access}</dd>
+        <dt className="font-bold uppercase tracking-wider text-muted">Access</dt>
+        <dd className="text-text">{pickup.access}</dd>
       </dl>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span
           className={cn(
-            "rounded-full border px-2.5 py-0.5 font-mono text-micro uppercase tracking-wider",
+            "border-2 border-rule px-2.5 py-0.5 font-mono text-micro font-bold uppercase tracking-wider text-ink",
             reservedByYou ? AVAILABILITY.reserved.className : AVAILABILITY[availability].className,
           )}
         >
@@ -54,7 +54,7 @@ export function PickupPanel({
           disabled={!canReserve}
           onClick={onReserve}
           aria-label={canReserve ? `Reserve for pickup: ${title}` : undefined}
-          className="disabled:cursor-not-allowed disabled:opacity-50"
+          
         >
           {reservedByYou ? "Reserved" : availability === "available" ? "Reserve for pickup" : "Unavailable"}
         </Button>

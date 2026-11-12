@@ -96,7 +96,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
     }
   }
 
-  const accent = telemetry ? "text-cyan" : "text-amber";
+  const accent = telemetry ? "bg-cyan" : "bg-amber";
 
   return (
     <>
@@ -108,12 +108,12 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
         aria-expanded={open}
         hidden={open}
         className={cn(
-          "fixed right-4 z-40 inline-flex items-center gap-2 rounded-full border bg-panel/95 px-4 py-2.5 font-mono text-meta uppercase tracking-wider text-text shadow-[0_8px_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-colors sm:right-6",
+          "nb-press fixed right-4 z-40 inline-flex items-center gap-2 border-2 border-rule px-4 py-2.5 font-head text-meta font-bold uppercase text-ink sm:right-6",
           "bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:bottom-6",
-          telemetry ? "border-cyan/50 hover:border-cyan" : "border-amber/50 hover:border-amber",
+          accent,
         )}
       >
-        <Radio aria-hidden size={15} className={accent} />
+        <Radio aria-hidden size={16} />
         Talk to {profile.displayName}
       </button>
 
@@ -130,18 +130,17 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
               if (e.key === "Escape") close();
             }}
             className={cn(
-              "fixed inset-x-2 bottom-[calc(0.5rem+env(safe-area-inset-bottom,0px))] z-50 flex max-h-[min(640px,calc(100dvh-5rem))] flex-col rounded-[3px] border bg-panel shadow-[0_12px_40px_rgba(0,0,0,0.6)]",
+              "fixed inset-x-2 bottom-[calc(0.5rem+env(safe-area-inset-bottom,0px))] z-50 flex max-h-[min(640px,calc(100dvh-5rem))] flex-col border-2 border-rule bg-panel shadow-nb-xl",
               "sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[400px]",
-              telemetry ? "border-cyan/30" : "border-rule",
-            )}
+                          )}
           >
-            <header className="flex items-center gap-3 border-b border-rule px-4 py-3">
+            <header className={cn("flex items-center gap-3 border-b-2 border-rule px-4 py-3", accent)}>
               <EquipmentAvatar profile={profile} size="sm" />
               <div className="min-w-0 flex-1">
-                <h2 id={titleId} className="truncate text-body-sm text-text">
+                <h2 id={titleId} className="truncate font-head text-body font-bold text-ink">
                   {profile.displayName}
                 </h2>
-                <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">
+                <p className="font-mono text-micro font-bold uppercase tracking-wider text-ink">
                   AI voice · {telemetry ? "telemetry readout" : "story channel"}
                 </p>
               </div>
@@ -149,7 +148,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                 type="button"
                 onClick={close}
                 aria-label="Close chat"
-                className="rounded-[2px] p-1.5 text-muted hover:text-text"
+                className="nb-press-sm border-2 border-rule bg-panel p-1 text-ink hover:bg-rust"
               >
                 <X aria-hidden size={16} />
               </button>
@@ -160,11 +159,11 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
               role="log"
               aria-live="polite"
               aria-busy={streaming}
-              className={cn("min-h-[200px] flex-1 space-y-3 overflow-y-auto px-4 py-4", telemetry && "scanlines")}
+              className={cn("min-h-[200px] flex-1 space-y-3 overflow-y-auto px-4 py-4", telemetry ? "bg-cyan-wash" : "bg-void")}
             >
               {messages.length === 0 ? (
                 <div className="space-y-3">
-                  <p className={cn("text-body leading-relaxed text-text/90", telemetry ? "font-mono text-meta" : "font-serif text-[17px]")}>
+                  <p className={cn("text-body leading-relaxed text-text", telemetry ? "font-mono text-meta" : "font-head text-[17px] font-medium")}>
                     {telemetry ? `> CHANNEL OPEN: ${profile.shortName.toUpperCase()}. AWAITING QUERY.` : profile.tagline}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -173,7 +172,7 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                         key={s}
                         type="button"
                         onClick={() => send(s)}
-                        className="rounded-full border border-rule px-3 py-1.5 text-left text-meta text-muted hover:border-muted hover:text-text"
+                        className="nb-press-sm border-2 border-rule bg-panel px-3 py-1.5 text-left text-meta font-bold text-ink hover:bg-amber"
                       >
                         {s}
                       </button>
@@ -185,15 +184,15 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                   <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
                     <p
                       className={cn(
-                        "max-w-[85%] whitespace-pre-wrap rounded-[3px] px-3 py-2 text-body-sm leading-relaxed",
+                        "max-w-[85%] whitespace-pre-wrap border-2 border-rule px-3 py-2 text-body-sm leading-relaxed text-ink shadow-nb-sm",
                         m.role === "user"
-                          ? "bg-rule/70 text-text"
-                          : cn("border border-rule bg-void/60 text-text/95", telemetry ? "font-mono text-meta" : "font-serif text-body-lg"),
+                          ? "bg-lilac"
+                          : cn("bg-panel", telemetry ? "font-mono text-meta" : "font-head text-body-lg font-medium"),
                       )}
                     >
                       <span className="sr-only">{m.role === "user" ? "You: " : `${profile.displayName}: `}</span>
                       {m.content || (
-                        <span aria-label="Receiving" className={cn("inline-flex gap-1", accent)}>
+                        <span aria-label="Receiving" className="inline-flex gap-1 font-bold">
                           <span className="animate-pulse">·</span>
                           <span className="animate-pulse [animation-delay:150ms]">·</span>
                           <span className="animate-pulse [animation-delay:300ms]">·</span>
@@ -204,14 +203,14 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                 ))
               )}
               {error ? (
-                <p role="alert" className="font-mono text-meta text-rust">
+                <p role="alert" className="border-2 border-rule bg-rust px-3 py-2 font-mono text-meta font-bold text-ink">
                   {error}
                 </p>
               ) : null}
             </div>
 
             <form
-              className="flex items-end gap-2 border-t border-rule p-3"
+              className="flex items-end gap-2 border-t-2 border-rule p-3"
               onSubmit={(e) => {
                 e.preventDefault();
                 send(draft);
@@ -234,14 +233,14 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                   }
                 }}
                 placeholder={`Ask ${profile.displayName} something…`}
-                className="max-h-32 min-h-9 flex-1 resize-none rounded-[2px] border border-rule bg-void/60 px-3 py-2 text-body-sm text-text placeholder:text-muted focus:border-muted focus:outline-none"
+                className="max-h-32 min-h-10 flex-1 resize-none border-2 border-rule bg-panel px-3 py-2 text-body-sm text-text shadow-nb-sm placeholder:text-muted focus:shadow-nb focus:outline-none"
               />
               {streaming ? (
                 <button
                   type="button"
                   onClick={() => abortRef.current?.abort()}
                   aria-label="Stop reply"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-[2px] border border-rule text-text hover:border-muted"
+                  className="nb-press-sm inline-flex h-10 w-10 items-center justify-center border-2 border-rule bg-panel text-ink hover:bg-rust"
                 >
                   <Square aria-hidden size={14} />
                 </button>
@@ -251,8 +250,8 @@ export function EquipmentChat({ profile }: { profile: EquipmentProfile }) {
                   aria-label="Send"
                   disabled={!draft.trim()}
                   className={cn(
-                    "inline-flex h-9 w-9 items-center justify-center rounded-[2px] text-void disabled:opacity-40",
-                    telemetry ? "bg-cyan" : "bg-amber",
+                    "nb-press-sm inline-flex h-10 w-10 items-center justify-center border-2 border-rule text-ink disabled:opacity-40 disabled:shadow-none",
+                    accent,
                   )}
                 >
                   <Send aria-hidden size={15} />

@@ -4,12 +4,11 @@ export const alt = "Aftersignal — the machines are still talking. A social fee
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const VOID = "#06080d";
-const TEXT = "#e9e5da";
-const MUTED = "#8c97a3";
-const AMBER = "#f5a524";
-const CYAN = "#5ad2e6";
-const RULE = "#1c2530";
+const CREAM = "#fff7e8";
+const INK = "#000000";
+const MUTED = "#5f574a";
+const YELLOW = "#ffdc58";
+const MINT = "#01ffcc";
 
 export default function Image() {
   return new ImageResponse(
@@ -21,36 +20,58 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "64px 72px",
-          background: VOID,
-          backgroundImage: `radial-gradient(rgba(185,196,207,0.35) 1.5px, transparent 1.5px), linear-gradient(to right, ${RULE} 1px, transparent 1px), linear-gradient(to bottom, ${RULE} 1px, transparent 1px)`,
-          backgroundSize: "120px 120px, 60px 60px, 60px 60px",
-          color: TEXT,
+          padding: "56px 72px",
+          background: CREAM,
+          backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.5px, transparent 1.5px)",
+          backgroundSize: "28px 28px",
+          color: INK,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 24, letterSpacing: 8 }}>
-          <span>AFTERSIGNAL</span>
-          <span style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 18, letterSpacing: 3, color: MUTED }}>
-            <span style={{ width: 10, height: 10, borderRadius: 10, background: CYAN }} />
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span
+            style={{
+              display: "flex",
+              fontSize: 30,
+              fontWeight: 700,
+              padding: "6px 14px",
+              background: YELLOW,
+              border: `3px solid ${INK}`,
+              boxShadow: `5px 5px 0 0 ${INK}`,
+            }}
+          >
+            AFTERSIGNAL
+          </span>
+          <span
+            style={{
+              display: "flex",
+              fontSize: 18,
+              fontWeight: 700,
+              letterSpacing: 2,
+              padding: "6px 12px",
+              background: MINT,
+              border: `3px solid ${INK}`,
+            }}
+          >
             CHANNEL OPEN · ARCHIVE UPLINK 2026
           </span>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 20, letterSpacing: 4, color: AMBER }}>
-            <span style={{ width: 48, height: 2, background: AMBER }} />
-            PINNED · LAST KNOWN SIGNAL
+        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+          <div style={{ fontSize: 96, fontWeight: 700, lineHeight: 1, letterSpacing: -3, maxWidth: 1000 }}>
+            The machines are still talking.
           </div>
-          <div style={{ fontSize: 92, lineHeight: 1.02, letterSpacing: -2, maxWidth: 980 }}>The machines are still talking.</div>
-          <div style={{ fontSize: 28, lineHeight: 1.4, color: MUTED, maxWidth: 920 }}>
+          <div style={{ fontSize: 28, lineHeight: 1.4, color: MUTED, maxWidth: 940 }}>
             Rovers, landers and instruments NASA left on the Moon and Mars post their own mission histories. Flip Ghost Mode for the telemetry.
           </div>
         </div>
-        <div style={{ display: "flex", gap: 40, fontSize: 20, letterSpacing: 2, color: MUTED, borderTop: `1px solid ${RULE}`, paddingTop: 24 }}>
-          <span style={{ color: TEXT }}>@oppy_mer_b</span>
-          <span>@ginny_chopper</span>
-          <span>@surveyor_three</span>
-          <span>@mirror_on_the_moon</span>
-          <span>@sojourner_og</span>
+        <div style={{ display: "flex", gap: 14, fontSize: 20, fontWeight: 700 }}>
+          {["@oppy_mer_b", "@ginny_chopper", "@surveyor_three", "@mirror_on_the_moon", "@sojourner_og"].map((h, i) => (
+            <span
+              key={h}
+              style={{ display: "flex", padding: "6px 12px", border: `3px solid ${INK}`, background: i === 0 ? YELLOW : "#ffffff" }}
+            >
+              {h}
+            </span>
+          ))}
         </div>
       </div>
     ),

@@ -15,23 +15,23 @@ export function GhostToggle() {
       aria-checked={telemetry}
       aria-label="Ghost Mode: switch between story and telemetry"
       onClick={toggle}
-      className="group ml-auto flex items-center gap-2.5 rounded-[2px] px-1 py-1 font-mono text-label uppercase tracking-wider"
+      className="group ml-auto flex items-center gap-2.5 py-1 font-head text-label font-bold uppercase tracking-wide"
     >
-      <span className="hidden text-muted transition-colors group-hover:text-text sm:inline">Ghost Mode</span>
+      <span className="hidden text-ink sm:inline">Ghost Mode</span>
       <span
         aria-hidden
         className={cn(
-          "relative flex h-5 w-9 items-center rounded-full border px-0.5 transition-colors duration-200",
-          telemetry ? "justify-end border-cyan/60 bg-cyan/10" : "justify-start border-amber/50 bg-amber/10",
+          "relative flex h-7 w-12 shrink-0 items-center border-2 border-rule p-0.5 shadow-nb-sm transition-colors duration-200 sm:w-13",
+          telemetry ? "justify-end bg-cyan" : "justify-start bg-amber",
         )}
       >
         <motion.span
           layout
           transition={{ duration: 0.18, ease: "easeOut" }}
-          className={cn("h-3.5 w-3.5 rounded-full", telemetry ? "bg-cyan" : "bg-amber")}
+          className="h-5 w-5 border-2 border-rule bg-panel"
         />
       </span>
-      <span className={cn("hidden w-[9ch] text-left min-[480px]:inline", telemetry ? "text-cyan" : "text-amber")}>
+      <span className="hidden w-[9ch] text-left text-ink min-[480px]:inline">
         {telemetry ? "Telemetry" : "Story"}
       </span>
     </button>

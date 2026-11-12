@@ -17,7 +17,7 @@ export function CommentItem({ comment }: { comment: Comment }) {
       ) : (
         <span
           aria-hidden
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-dashed border-muted/60 font-mono text-body-sm text-muted"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-dashed border-rule bg-panel font-mono text-body-sm text-ink"
         >
           ⊕
         </span>
@@ -26,20 +26,20 @@ export function CommentItem({ comment }: { comment: Comment }) {
         <p className="flex flex-wrap items-center gap-x-1.5 text-small">
           {profile ? (
             <>
-              <Link href={`/equipment/${profile.id}`} className="font-semibold text-text hover:underline">
+              <Link href={`/equipment/${profile.id}`} className="font-head font-bold text-text hover:underline">
                 {profile.displayName}
               </Link>
               <VerifiedBadge />
               <span className="font-mono text-label text-muted">@{profile.handle}</span>
             </>
           ) : (
-            <span className="font-mono text-meta text-muted">@visitor · Earth</span>
+            <span className="font-mono text-meta font-bold text-text">@visitor · Earth</span>
           )}
           <span className="font-mono text-label text-muted">
             · <time dateTime={comment.publishedAt}>{formatMissionDate(comment.publishedAt)}</time>
           </span>
         </p>
-        <p className="mt-0.5 text-body-sm leading-relaxed text-text/90">{comment.body}</p>
+        <p className="mt-0.5 text-body-sm leading-relaxed text-text">{comment.body}</p>
       </div>
     </div>
   );

@@ -20,8 +20,8 @@ function ChipRow<K extends "planet" | "era" | "status">({
   onChange: (next: FeedFilters) => void;
 }) {
   return (
-    <div role="group" aria-label={label} className="flex flex-wrap items-center gap-x-1 gap-y-1.5">
-      <span className="w-full font-mono text-micro uppercase tracking-[0.14em] text-muted sm:w-32">{label}</span>
+    <div role="group" aria-label={label} className="flex flex-wrap items-center gap-1.5">
+      <span className="w-full font-head text-label font-bold uppercase tracking-wide text-text sm:w-32">{label}</span>
       {options.map((opt) => {
         const active = filters[field] === opt.value;
         return (
@@ -32,9 +32,9 @@ function ChipRow<K extends "planet" | "era" | "status">({
             title={opt.hint}
             onClick={() => onChange({ ...filters, [field]: opt.value })}
             className={cn(
-              "rounded-[2px] border-b px-2 py-1 font-mono text-label tracking-wider transition-colors",
+              "border-2 px-2 py-0.5 font-mono text-label font-bold tracking-wider",
               opt.keepCase ? "normal-case" : "uppercase",
-              active ? "border-amber text-amber" : "border-transparent text-muted hover:text-text",
+              active ? "border-rule bg-amber text-ink shadow-nb-sm" : "border-transparent text-ink hover:border-rule hover:bg-sunk",
             )}
           >
             {opt.label}
@@ -47,7 +47,7 @@ function ChipRow<K extends "planet" | "era" | "status">({
 
 export function FilterBar({ filters, onChange }: { filters: FeedFilters; onChange: (next: FeedFilters) => void }) {
   return (
-    <div className="space-y-2 rounded-[3px] border border-rule bg-panel/70 p-3 sm:p-4">
+    <div className="nb-card space-y-2.5 bg-panel p-3 sm:p-4">
       <ChipRow
         label="Planetary body"
         field="planet"

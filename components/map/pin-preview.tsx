@@ -11,11 +11,11 @@ export function PinPreview({ profiles, onClose }: { profiles: EquipmentProfile[]
   return (
     <section
       aria-labelledby="pin-preview-heading"
-      className="relative space-y-3 rounded-[3px] border border-rule bg-panel/95 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.55)] backdrop-blur"
+      className="nb-card relative space-y-3 bg-panel p-4 shadow-nb-lg"
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 id="pin-preview-heading" aria-live="polite" className="font-mono text-meta uppercase tracking-[0.12em] text-text">
+          <h2 id="pin-preview-heading" aria-live="polite" className="font-head text-body-lg font-bold uppercase text-text">
             {site.siteName}
           </h2>
           <p className="font-mono text-label text-muted">
@@ -26,7 +26,7 @@ export function PinPreview({ profiles, onClose }: { profiles: EquipmentProfile[]
           type="button"
           onClick={onClose}
           aria-label="Close preview"
-          className="rounded-[2px] p-1 text-muted hover:text-text"
+          className="nb-press-sm border-2 border-rule bg-panel p-1 text-ink hover:bg-rust"
         >
           <X aria-hidden size={14} />
         </button>
@@ -36,16 +36,16 @@ export function PinPreview({ profiles, onClose }: { profiles: EquipmentProfile[]
           <li key={p.id} className="flex gap-3">
             <EquipmentAvatar profile={p} />
             <div className="min-w-0 flex-1 space-y-1">
-              <p className="text-body-sm font-semibold text-text">
+              <p className="font-head text-body-sm font-bold text-text">
                 {p.displayName} <span className="font-mono text-label font-normal text-muted">@{p.handle}</span>
               </p>
               <p className="font-mono text-micro uppercase tracking-wider text-muted">
                 {statusLabel(p.status)} · Active {formatActive(p)}
               </p>
-              <p className="text-meta leading-snug text-muted">{p.telemetry.purpose}</p>
+              <p className="text-meta leading-snug text-text">{p.telemetry.purpose}</p>
               <Link
                 href={`/equipment/${p.id}`}
-                className="inline-flex items-center gap-1 rounded-[2px] font-mono text-label uppercase tracking-wider text-amber hover:text-text"
+                className="nb-press-sm inline-flex items-center gap-1 border-2 border-rule bg-amber px-2 py-0.5 font-mono text-label font-bold uppercase tracking-wider text-ink hover:bg-amber-hover"
               >
                 Open telemetry bio <ArrowUpRight aria-hidden size={12} />
               </Link>

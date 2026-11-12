@@ -12,12 +12,12 @@ export function PostActions({ metrics, replies }: { metrics: PostMetrics; replie
   const [reposted, setReposted] = useState(false);
 
   return (
-    <div className="flex items-center gap-6 font-mono text-meta text-muted">
+    <div className="flex flex-wrap items-center gap-2 font-mono text-meta font-bold text-ink">
       <button
         type="button"
         aria-pressed={liked}
         onClick={() => setLiked((v) => !v)}
-        className={cn("flex items-center gap-1.5 rounded-[2px] transition-colors hover:text-amber", liked && "text-amber")}
+        className={cn("nb-press-sm flex min-h-8 items-center gap-1.5 border-2 border-rule px-2.5", liked ? "bg-amber" : "bg-panel")}
       >
         <Heart aria-hidden size={15} fill={liked ? "currentColor" : "none"} />
         <span className="sr-only">Like, </span>
@@ -27,13 +27,13 @@ export function PostActions({ metrics, replies }: { metrics: PostMetrics; replie
         type="button"
         aria-pressed={reposted}
         onClick={() => setReposted((v) => !v)}
-        className={cn("flex items-center gap-1.5 rounded-[2px] transition-colors hover:text-cyan", reposted && "text-cyan")}
+        className={cn("nb-press-sm flex min-h-8 items-center gap-1.5 border-2 border-rule px-2.5", reposted ? "bg-cyan" : "bg-panel")}
       >
         <Repeat2 aria-hidden size={16} />
         <span className="sr-only">Rebroadcast, </span>
         {formatCount(metrics.reposts + (reposted ? 1 : 0))}
       </button>
-      <span className="flex items-center gap-1.5" aria-label={`${replies} replies`}>
+      <span className="flex min-h-8 items-center gap-1.5 px-2.5" aria-label={`${replies} replies`}>
         <MessageSquare aria-hidden size={14} />
         {formatCount(replies)}
       </span>

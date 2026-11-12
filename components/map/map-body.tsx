@@ -138,7 +138,7 @@ export function MapBody({
         setDragging(false);
       }}
       className={cn(
-        "relative aspect-[2/1] w-full touch-none select-none overflow-hidden rounded-[3px] border border-rule bg-void",
+        "nb-card relative aspect-[2/1] w-full touch-none select-none overflow-hidden bg-ink",
         view.zoom > 1 && (dragging ? "cursor-grabbing" : "cursor-grab"),
       )}
     >
@@ -164,8 +164,8 @@ export function MapBody({
           {[-60, -30, 30, 60].map((lat) => (
             <line key={lat} x1={0} x2={360} y1={90 - lat} y2={90 - lat} stroke="rgba(233,229,218,0.08)" strokeWidth={0.2} vectorEffect="non-scaling-stroke" />
           ))}
-          <line x1={0} x2={360} y1={90} y2={90} stroke="rgba(90,210,230,0.28)" strokeWidth={0.3} vectorEffect="non-scaling-stroke" />
-          <line x1={180} x2={180} y1={0} y2={180} stroke="rgba(90,210,230,0.28)" strokeWidth={0.3} vectorEffect="non-scaling-stroke" />
+          <line x1={0} x2={360} y1={90} y2={90} stroke="rgba(1,255,204,0.55)" strokeWidth={0.3} vectorEffect="non-scaling-stroke" />
+          <line x1={180} x2={180} y1={0} y2={180} stroke="rgba(1,255,204,0.55)" strokeWidth={0.3} vectorEffect="non-scaling-stroke" />
         </svg>
       </div>
 
@@ -182,7 +182,7 @@ export function MapBody({
         ))}
       </div>
 
-      <div aria-hidden className="pointer-events-none absolute bottom-2 right-2 font-mono text-micro uppercase tracking-wider text-text/60">
+      <div aria-hidden className="pointer-events-none absolute bottom-2 right-2 border-2 border-rule bg-panel px-1.5 font-mono text-micro font-bold uppercase tracking-wider text-ink">
         0° · equirectangular · ×{view.zoom.toFixed(1)}
       </div>
     </div>

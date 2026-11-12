@@ -40,15 +40,15 @@ export function MapPin({
       <span
         aria-hidden
         className={cn(
-          "absolute inset-0 rounded-full border transition-transform duration-200",
-          selected ? "scale-100 border-text" : "scale-75 border-text/40 group-hover:scale-90 group-hover:border-text/80",
+          "absolute inset-0 rounded-full border-2 transition-transform duration-200",
+          selected ? "scale-100 border-panel" : "scale-75 border-panel/50 group-hover:scale-90 group-hover:border-panel",
         )}
       />
-      <span aria-hidden className={cn("h-2.5 w-2.5 rounded-full ring-2 ring-void", STATUS_DOT[lead.status])} />
+      <span aria-hidden className={cn("h-3.5 w-3.5 rounded-full border-2 border-rule", STATUS_DOT[lead.status])} />
       {group.profiles.length > 1 ? (
         <span
           aria-hidden
-          className="absolute -right-1.5 -top-1.5 rounded-full bg-text px-1 font-mono text-micro leading-[14px] text-void"
+          className="absolute -right-2 -top-2 border-2 border-rule bg-amber px-1 font-mono text-micro font-bold leading-[14px] text-ink"
         >
           {group.profiles.length}
         </span>
@@ -56,9 +56,9 @@ export function MapPin({
       <span
         aria-hidden
         className={cn(
-          "pointer-events-none absolute hidden whitespace-nowrap rounded-[2px] bg-void/80 px-1.5 py-0.5 font-mono text-micro uppercase tracking-wider sm:block",
+          "pointer-events-none absolute hidden whitespace-nowrap border-2 border-rule px-1.5 py-0.5 font-mono text-micro font-bold uppercase tracking-wider text-ink sm:block",
           group.labelSide === "left" ? "right-full mr-1.5" : "left-full ml-1.5",
-          selected ? "text-text" : "text-text/70",
+          selected ? "bg-amber shadow-nb-sm" : "bg-panel",
         )}
       >
         {group.profiles.length > 1 ? lead.telemetry.coordinates.siteName : lead.displayName}

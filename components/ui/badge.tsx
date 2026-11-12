@@ -3,10 +3,10 @@ import clsx from "clsx";
 type BadgeTone = "amber" | "cyan" | "rust" | "neutral";
 
 const toneClasses: Record<BadgeTone, string> = {
-  amber: "border-amber text-amber",
-  cyan: "border-cyan text-cyan",
-  rust: "border-rust text-rust",
-  neutral: "border-muted text-muted",
+  amber: "bg-amber",
+  cyan: "bg-cyan",
+  rust: "bg-rust",
+  neutral: "bg-panel",
 };
 
 export function Badge({
@@ -19,7 +19,7 @@ export function Badge({
   return (
     <span
       className={clsx(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-label uppercase tracking-wider",
+        "inline-flex items-center border-2 border-rule px-2 py-0.5 font-head text-label font-bold uppercase tracking-wide text-ink shadow-nb-sm",
         toneClasses[tone],
       )}
     >

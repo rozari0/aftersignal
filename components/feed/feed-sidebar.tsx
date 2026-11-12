@@ -17,43 +17,43 @@ export function FeedSidebar({ onHashtag }: { onHashtag: (tag: string) => void })
   const { mode } = useDisplayMode();
 
   return (
-    <aside className="hidden space-y-4 lg:block" aria-label="Network overview">
-      <section className="space-y-3 rounded-[3px] border border-rule bg-panel/70 p-4">
-        <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">Ghost Mode</p>
-        <p className="text-small leading-relaxed text-muted">
+    <aside className="hidden space-y-6 lg:block" aria-label="Network overview">
+      <section className="nb-card space-y-3 bg-panel p-4">
+        <p className="font-head text-body font-bold uppercase text-text">Ghost Mode</p>
+        <p className="text-small leading-relaxed text-text">
           {mode === "story"
             ? "You're reading the network as the machines tell it. Flip Ghost Mode to strip the voice and see the instrument: coordinates, mass, power, mission log."
             : "Telemetry view. Personality off, instruments on. Every figure here is sourced on the hardware's profile."}
         </p>
       </section>
 
-      <section className="space-y-2 rounded-[3px] border border-rule bg-panel/70 p-4">
-        <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">Trending frequencies</p>
-        <ul className="flex flex-wrap gap-x-3 gap-y-1">
+      <section className="nb-card space-y-3 bg-panel p-4">
+        <p className="font-head text-body font-bold uppercase text-text">Trending frequencies</p>
+        <ul className="flex flex-wrap gap-2">
           {TRENDING.map(({ tag, label, count }) => (
             <li key={tag}>
               <button
                 type="button"
                 onClick={() => onHashtag(tag)}
-                className="rounded-[2px] font-mono text-meta text-amber/80 hover:text-amber"
+                className="nb-press-sm border-2 border-rule bg-panel px-1.5 font-mono text-meta font-bold text-ink hover:bg-amber"
               >
                 {label}
-                <span className="ml-1 text-muted">{count}</span>
+                <span className="ml-1 font-normal text-muted">{count}</span>
               </button>
             </li>
           ))}
         </ul>
       </section>
 
-      <section className="space-y-3 rounded-[3px] border border-rule bg-panel/70 p-4">
-        <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">On the network · {profiles.length}</p>
+      <section className="nb-card space-y-3 bg-panel p-4">
+        <p className="font-head text-body font-bold uppercase text-text">On the network · {profiles.length}</p>
         <ul className="space-y-2.5">
           {profiles.map((p) => (
             <li key={p.id}>
-              <Link href={`/equipment/${p.id}`} className="group flex items-center gap-2.5 rounded-[2px]">
+              <Link href={`/equipment/${p.id}`} className="group flex items-center gap-2.5">
                 <EquipmentAvatar profile={p} size="sm" />
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-small text-text group-hover:underline">{p.displayName}</span>
+                  <span className="block truncate text-small font-bold text-text group-hover:underline">{p.displayName}</span>
                   <span className="block font-mono text-micro uppercase tracking-wider text-muted">
                     {p.planet === "moon" ? "Moon" : "Mars"} · {statusLabel(p.status)}
                   </span>

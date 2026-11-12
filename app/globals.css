@@ -1,21 +1,39 @@
 @import "tailwindcss";
 
+/*
+ * Neobrutalist palette, after neobrutalism.com: cream ground, white cards,
+ * pure black ink for text, borders and shadows, flat saturated fills.
+ * Accent tokens are FILLS. Never set body text in amber/cyan/rust; put black
+ * text on top of them instead.
+ */
 @theme {
-  --color-void: #06080d;
-  --color-panel: #0c1118;
-  --color-rule: #1c2530;
-  --color-text: #e9e5da;
-  --color-muted: #8c97a3;
-  --color-amber: #f5a524;
-  --color-cyan: #5ad2e6;
-  --color-rust: #c4553b;
-  --color-silver: #b9c4cf;
+  --color-void: #fff7e8; /* page ground (cream) */
+  --color-panel: #ffffff; /* card surface */
+  --color-sunk: #efe7d6; /* recessed surface: inputs, wells, table stripes */
+  --color-rule: #000000; /* every border */
+  --color-ink: #000000;
+  --color-text: #000000;
+  --color-muted: #5f574a;
+  --color-amber: #ffdc58; /* primary / story accent */
+  --color-amber-hover: #ffd12e;
+  --color-cyan: #01ffcc; /* telemetry accent */
+  --color-cyan-wash: #ccfff2; /* telemetry panel ground */
+  --color-rust: #ff6b6b; /* partially salvaged / errors */
+  --color-lilac: #c4a1ff;
+  --color-silver: #d9d2c3;
+
+  --radius-nb: 0px;
+  --shadow-nb-xs: 1px 1px 0 0 #000;
+  --shadow-nb-sm: 2px 2px 0 0 #000;
+  --shadow-nb: 4px 4px 0 0 #000;
+  --shadow-nb-lg: 6px 6px 0 0 #000;
+  --shadow-nb-xl: 8px 8px 0 0 #000;
 }
 
 /*
  * UI type roles. Sizes live in --type-* vars so the whole
- * ramp changes in one place. Serif reading sizes stay per-component.
- *   micro    uppercase kickers, table heads, pin labels
+ * ramp changes in one place. Display sizes stay per-component.
+ *   micro    uppercase table heads, pin labels
  *   label    nav, filters, metadata rows, badges
  *   meta     handles, hashtags, buttons, mono readouts
  *   small    names in lists, dense mono prose
@@ -33,7 +51,7 @@
   --text-body-lg: var(--type-body-lg);
 }
 
-/* 12 / 13 / 14 / 15 / 16 / 17 / 18 px: the mono chrome reads at a glance, prose sits at 16px+. */
+/* 12 / 13 / 14 / 15 / 16 / 17 / 18 px */
 :root {
   --type-micro: 0.75rem;
   --type-label: 0.8125rem;
@@ -47,7 +65,58 @@
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-head: var(--font-space-grotesk), var(--font-geist-sans), ui-sans-serif, sans-serif;
+}
+
+/*
+ * The neobrutalist press: resting block shadow, lifts toward the cursor on hover,
+ * slams flat into its shadow slot on press.
+ */
+@utility nb-press {
+  box-shadow: var(--shadow-nb);
+  transition:
+    translate 150ms cubic-bezier(0, 0, 0.2, 1),
+    box-shadow 150ms cubic-bezier(0, 0, 0.2, 1),
+    background-color 150ms;
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      translate: -2px -2px;
+      box-shadow: var(--shadow-nb-lg);
+    }
+  }
+  &:active:not(:disabled) {
+    translate: 4px 4px;
+    box-shadow: none;
+  }
+}
+
+/* Smaller press for chips and inline controls. */
+@utility nb-press-sm {
+  box-shadow: var(--shadow-nb-sm);
+  transition:
+    translate 120ms cubic-bezier(0, 0, 0.2, 1),
+    box-shadow 120ms cubic-bezier(0, 0, 0.2, 1),
+    background-color 120ms;
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      translate: -1px -1px;
+      box-shadow: 3px 3px 0 0 #000;
+    }
+  }
+  &:active:not(:disabled) {
+    translate: 2px 2px;
+    box-shadow: none;
+  }
+}
+
+/* A card frame: black border plus block shadow. Pair with a bg-* fill. */
+@utility nb-card {
+  border: 2px solid var(--color-rule);
+  box-shadow: var(--shadow-nb);
+}
+
+html {
+  scrollbar-color: #000 var(--color-sunk);
 }
 
 body {
@@ -56,32 +125,35 @@ body {
   font-family: var(--font-geist-sans);
 }
 
-/* Fixed background layer: faint star dots at two scales, plus a 32px grid. */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* Fixed background layer: an ink dot grid on cream. */
 .starfield {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgba(28, 37, 48, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(28, 37, 48, 0.04) 1px, transparent 1px),
-    radial-gradient(rgba(185, 196, 207, 0.35) 1px, transparent 1px),
-    radial-gradient(rgba(185, 196, 207, 0.2) 1.5px, transparent 1.5px);
-  background-size:
-    32px 32px,
-    32px 32px,
-    220px 220px,
-    460px 460px;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.13) 1px, transparent 1.2px);
+  background-size: 24px 24px;
 }
 
 ::selection {
   background: var(--color-amber);
-  color: var(--color-void);
+  color: #000;
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-cyan);
-  outline-offset: 2px;
+  outline: 3px solid #000;
+  outline-offset: 3px;
+}
+
+input,
+textarea {
+  caret-color: #000;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -94,13 +166,7 @@ body {
   }
 }
 
-/* Telemetry panels: faint CRT scanlines, only behind instrument readouts. */
+/* Telemetry wells: flat mint ground behind instrument readouts. */
 .scanlines {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(90, 210, 230, 0.035) 0px,
-    rgba(90, 210, 230, 0.035) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+  background-color: var(--color-cyan-wash);
 }

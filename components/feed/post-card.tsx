@@ -43,16 +43,15 @@ export function PostCard({
     <article
       aria-labelledby={`post-${post.id}`}
       className={cn(
-        "relative space-y-4 rounded-[3px] border bg-panel/70 p-4 sm:p-5",
-        telemetry ? "border-cyan/20" : "border-rule",
-        post.pinned && "border-l-2 border-l-amber",
+        "nb-card relative space-y-4 p-4 sm:p-5",
+        telemetry ? "bg-cyan-wash" : "bg-panel",
       )}
     >
       <h2 id={`post-${post.id}`} className="sr-only">
         {profile.displayName}, {post.publishedAt}
       </h2>
       {post.pinned ? (
-        <p className="font-mono text-micro uppercase tracking-[0.14em] text-amber">
+        <p className="-mx-4 -mt-4 border-b-2 border-rule bg-amber px-4 py-1.5 font-head text-label font-bold uppercase tracking-wide text-ink sm:-mx-5 sm:-mt-5 sm:px-5">
           {post.topic === "last-signal" ? "Pinned · Last known signal" : "Pinned"}
         </p>
       ) : null}
@@ -68,13 +67,13 @@ export function PostCard({
           {telemetry ? (
             <>
               {hideStrip ? null : <TelemetryStrip profile={profile} />}
-              <div className="scanlines -mx-1 rounded-[2px] px-1 py-1">
+              <div className="border-2 border-rule bg-panel p-3">
                 <TelemetryBody telemetry={post.telemetry} />
               </div>
               {post.media ? <PostMedia media={post.media} muted /> : null}
               {log.length ? (
                 <div className="space-y-2">
-                  <p className="font-mono text-micro uppercase tracking-[0.14em] text-muted">Mission log · as of this entry</p>
+                  <p className="font-head text-label font-bold uppercase tracking-wide text-text">Mission log · as of this entry</p>
                   <MissionLog entries={log} limit={3} />
                 </div>
               ) : null}

@@ -12,10 +12,10 @@ export default function Page() {
   const moon = profiles.filter((p) => p.planet === "moon").length;
   return (
     <div className="space-y-6">
-      <header className="space-y-3">
+      <header className="space-y-4">
         <SectionLabel>Surface locator</SectionLabel>
-        <h1 className="font-serif text-4xl tracking-tight text-text sm:text-5xl">Where they rest</h1>
-        <p className="max-w-2xl text-body leading-relaxed text-muted">
+        <h1 className="font-head text-4xl font-bold tracking-[-0.03em] text-text sm:text-6xl">Where they rest</h1>
+        <p className="max-w-2xl text-body leading-relaxed text-text">
           {profiles.length} pieces of hardware, {moon} on the Moon and {profiles.length - moon} on Mars, plotted from their
           published coordinates on public-domain global mosaics.
         </p>

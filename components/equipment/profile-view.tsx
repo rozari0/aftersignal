@@ -20,7 +20,7 @@ import { TelemetryStatusBar } from "./telemetry-status-bar";
 type Neighbour = Pick<EquipmentProfile, "id" | "displayName">;
 
 const Label = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="font-mono text-label uppercase tracking-[0.14em] text-muted">{children}</h2>
+  <h2 className="font-head text-body font-bold uppercase tracking-wide text-text">{children}</h2>
 );
 
 export function ProfileView({
@@ -44,7 +44,7 @@ export function ProfileView({
   const t = profile.telemetry;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <ProfileHeader profile={profile} mode={mode} />
       <TelemetryStatusBar profile={profile} />
 
@@ -56,28 +56,28 @@ export function ProfileView({
           {telemetry ? (
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
               <div className="min-w-0 space-y-6">
-                <section className="scanlines space-y-3 rounded-[3px] border border-cyan/20 bg-panel/70 p-4 sm:p-5">
+                <section className="nb-card space-y-3 bg-cyan-wash p-4 sm:p-5">
                   <Label>Engineering purpose</Label>
-                  <p className="font-mono text-small leading-relaxed text-text/90">{t.purpose}</p>
+                  <p className="font-mono text-small leading-relaxed text-text">{t.purpose}</p>
                   <Label>Heritage status</Label>
-                  <p className="font-mono text-small leading-relaxed text-text/90">{t.heritageStatus}</p>
+                  <p className="font-mono text-small leading-relaxed text-text">{t.heritageStatus}</p>
                 </section>
                 <section className="space-y-3">
                   <Label>Instrument readings</Label>
                   <TelemetryGrid readings={t.readings} />
                 </section>
-                <section className="space-y-3 rounded-[3px] border border-rule bg-panel/70 p-4 sm:p-5">
+                <section className="nb-card space-y-3 bg-panel p-4 sm:p-5">
                   <Label>Full mission log</Label>
                   <MissionLog entries={t.missionLog} limit={t.missionLog.length} />
                 </section>
               </div>
-              <aside className="space-y-3 rounded-[3px] border border-rule bg-panel/70 p-4 lg:self-start">
+              <aside className="nb-card space-y-3 bg-panel p-4 lg:self-start">
                 <Label>Sources · {t.sources.length}</Label>
                 <ol className="space-y-2.5">
                   {t.sources.map((s, i) => (
                     <li key={s.url} className="flex gap-2 font-mono text-meta leading-snug">
-                      <span className="text-muted">{String(i + 1).padStart(2, "0")}</span>
-                      <a href={s.url} target="_blank" rel="noreferrer" className="text-cyan hover:underline">
+                      <span className="font-bold text-muted">{String(i + 1).padStart(2, "0")}</span>
+                      <a href={s.url} target="_blank" rel="noreferrer" className="font-bold text-ink underline decoration-2 underline-offset-2 hover:bg-cyan">
                         {s.label} ↗
                       </a>
                     </li>
@@ -87,7 +87,7 @@ export function ProfileView({
             </div>
           ) : (
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-              <p className="font-serif text-[20px] leading-[1.55] text-text/95">{profile.bio}</p>
+              <p className="max-w-[68ch] font-head text-[20px] font-medium leading-[1.55] tracking-[-0.01em] text-text">{profile.bio}</p>
               {profile.relations?.length ? (
                 <section className="space-y-3 lg:self-start">
                   <Label>Cross-mission relations</Label>
@@ -110,7 +110,7 @@ export function ProfileView({
           <Label>
             Transmissions · {rest.length}
           </Label>
-          <ul className="space-y-4">
+          <ul className="space-y-6">
             {rest.map((post) => (
               <li key={post.id}>
                 <PostCard post={post} hideStrip />
@@ -123,39 +123,39 @@ export function ProfileView({
       {salvage ? (
         <Link
           href={`/salvage#${salvage.id}`}
-          className="group flex items-center gap-4 rounded-[3px] border border-rule bg-panel/70 p-4 transition-colors hover:border-muted"
+          className="nb-press group flex items-center gap-4 border-2 border-rule bg-amber p-4"
         >
-          <Recycle aria-hidden size={20} className="shrink-0 text-amber" />
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-rule bg-panel"><Recycle aria-hidden size={20} className="text-ink" /></span>
           <span className="min-w-0 flex-1">
-            <span className="block font-mono text-micro uppercase tracking-[0.14em] text-muted">
+            <span className="block font-mono text-micro font-bold uppercase tracking-wider text-ink">
               Upcycle Me · {salvage.availability} · {formatMass(salvage.totalMassKg)}
             </span>
-            <span className="block truncate text-body text-text group-hover:underline">{salvage.title}</span>
+            <span className="block truncate font-head text-body-lg font-bold text-ink">{salvage.title}</span>
           </span>
-          <ArrowRight aria-hidden size={16} className="shrink-0 text-muted" />
+          <ArrowRight aria-hidden size={20} className="shrink-0 text-ink" />
         </Link>
       ) : null}
 
-      <nav aria-label="Adjacent hardware" className="flex justify-between gap-4 border-t border-rule pt-4">
+      <nav aria-label="Adjacent hardware" className="flex justify-between gap-4">
         <Link
           href={`/equipment/${prev.id}`}
           rel="prev"
-          className="group flex items-center gap-2 font-mono text-label uppercase tracking-wider text-muted hover:text-text"
+          className="nb-press group flex items-center gap-2 border-2 border-rule bg-panel px-3 py-2 font-mono text-label uppercase tracking-wider text-muted hover:bg-sunk"
         >
           <ArrowLeft aria-hidden size={14} />
           <span>
             <span className="block text-micro">Previous</span>
-            <span className="text-text group-hover:underline">{prev.displayName}</span>
+            <span className="font-head font-bold normal-case text-text">{prev.displayName}</span>
           </span>
         </Link>
         <Link
           href={`/equipment/${next.id}`}
           rel="next"
-          className="group flex items-center gap-2 text-right font-mono text-label uppercase tracking-wider text-muted hover:text-text"
+          className="nb-press group flex items-center gap-2 border-2 border-rule bg-panel px-3 py-2 text-right font-mono text-label uppercase tracking-wider text-muted hover:bg-sunk"
         >
           <span>
             <span className="block text-micro">Next</span>
-            <span className="text-text group-hover:underline">{next.displayName}</span>
+            <span className="font-head font-bold normal-case text-text">{next.displayName}</span>
           </span>
           <ArrowRight aria-hidden size={14} />
         </Link>

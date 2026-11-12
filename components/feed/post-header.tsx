@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 import { formatMissionDate } from "@/lib/format";
 import { formatSiteCoords, statusLabel } from "@/lib/telemetry";
 
-const STATUS_TEXT = { "signal-lost": "text-amber", "still-passive": "text-cyan", "partially-salvaged": "text-rust" } as const;
+const STATUS_FILL = { "signal-lost": "bg-amber", "still-passive": "bg-cyan", "partially-salvaged": "bg-rust" } as const;
 
 export function PostHeader({
   post,
@@ -23,7 +23,7 @@ export function PostHeader({
 
   return (
     <header className="flex items-start gap-3">
-      <Link href={href} aria-label={`${profile.displayName} profile`} className="rounded-full">
+      <Link href={href} aria-label={`${profile.displayName} profile`} className="shrink-0 rounded-full">
         <EquipmentAvatar profile={profile} />
       </Link>
       <div className="min-w-0 flex-1">
@@ -32,7 +32,7 @@ export function PostHeader({
             href={href}
             className={cn(
               "truncate hover:underline",
-              telemetry ? "font-mono text-small uppercase tracking-wider text-text" : "font-semibold text-text",
+              telemetry ? "font-mono text-small font-bold uppercase tracking-wider text-text" : "font-head text-body font-bold text-text",
             )}
           >
             {telemetry && profile.shortName !== profile.displayName
@@ -40,7 +40,7 @@ export function PostHeader({
               : profile.displayName}
           </Link>
           {telemetry ? (
-            <span className={cn("font-mono text-micro uppercase tracking-wider", STATUS_TEXT[profile.status])}>
+            <span className={cn("border-2 border-rule px-1.5 font-mono text-micro font-bold uppercase tracking-wider text-ink", STATUS_FILL[profile.status])}>
               {statusLabel(profile.status)}
             </span>
           ) : (
@@ -51,7 +51,7 @@ export function PostHeader({
           {telemetry ? (
             <>
               {profile.telemetry.coordinates.siteName}
-              <span className="mx-1.5 text-rule">/</span>
+              <span className="mx-1.5 text-muted">/</span>
               {formatSiteCoords(profile)}
             </>
           ) : (

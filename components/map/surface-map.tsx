@@ -51,9 +51,9 @@ export function SurfaceMap() {
     });
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <div role="group" aria-label="Planetary body" className="flex items-center gap-1">
+    <div className="space-y-6">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+        <div role="group" aria-label="Planetary body" className="flex items-center gap-1.5">
           {PLANETS.map((p) => (
             <button
               key={p.id}
@@ -61,25 +61,25 @@ export function SurfaceMap() {
               aria-pressed={planet === p.id}
               onClick={() => switchPlanet(p.id)}
               className={cn(
-                "rounded-[2px] border-b px-2 py-1 font-mono text-label uppercase tracking-wider transition-colors",
-                planet === p.id ? "border-amber text-amber" : "border-transparent text-muted hover:text-text",
+                "border-2 px-2.5 py-1 font-mono text-label font-bold uppercase tracking-wider",
+                planet === p.id ? "border-rule bg-amber text-ink shadow-nb-sm" : "border-transparent text-ink hover:border-rule hover:bg-panel",
               )}
             >
-              {p.label} <span className="text-muted">{profiles.filter((x) => x.planet === p.id).length}</span>
+              {p.label} <span className="font-normal">{profiles.filter((x) => x.planet === p.id).length}</span>
             </button>
           ))}
         </div>
-        <p className="font-mono text-micro uppercase tracking-[0.14em] text-cyan">
+        <p className="border-2 border-rule bg-cyan px-2 py-0.5 font-mono text-micro font-bold uppercase tracking-wider text-ink">
           Always telemetry · Ghost Mode does not change this view
         </p>
-        <div className="ml-auto flex items-center gap-1" role="group" aria-label="Map zoom">
-          <button type="button" onClick={() => zoomButton(1.4)} disabled={view.zoom >= 4} aria-label="Zoom in" className="flex h-8 w-8 items-center justify-center rounded-[2px] border border-rule text-muted hover:text-text disabled:opacity-40">
+        <div className="ml-auto flex items-center gap-2" role="group" aria-label="Map zoom">
+          <button type="button" onClick={() => zoomButton(1.4)} disabled={view.zoom >= 4} aria-label="Zoom in" className="nb-press-sm flex h-9 w-9 items-center justify-center border-2 border-rule bg-panel text-ink hover:bg-amber disabled:opacity-40 disabled:shadow-none">
             <Plus aria-hidden size={14} />
           </button>
-          <button type="button" onClick={() => zoomButton(1 / 1.4)} disabled={view.zoom <= 1} aria-label="Zoom out" className="flex h-8 w-8 items-center justify-center rounded-[2px] border border-rule text-muted hover:text-text disabled:opacity-40">
+          <button type="button" onClick={() => zoomButton(1 / 1.4)} disabled={view.zoom <= 1} aria-label="Zoom out" className="nb-press-sm flex h-9 w-9 items-center justify-center border-2 border-rule bg-panel text-ink hover:bg-amber disabled:opacity-40 disabled:shadow-none">
             <Minus aria-hidden size={14} />
           </button>
-          <button type="button" onClick={() => setView(RESET)} aria-label="Reset map view" className="flex h-8 items-center gap-1.5 rounded-[2px] border border-rule px-2 font-mono text-micro uppercase tracking-wider text-muted hover:text-text">
+          <button type="button" onClick={() => setView(RESET)} aria-label="Reset map view" className="nb-press-sm flex h-9 items-center gap-1.5 border-2 border-rule bg-panel px-2.5 font-mono text-micro font-bold uppercase tracking-wider text-ink hover:bg-amber">
             <RotateCcw aria-hidden size={12} /> Reset
           </button>
         </div>
@@ -101,12 +101,12 @@ export function SurfaceMap() {
         ) : null}
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
-        <section aria-labelledby="hardware-list" className="space-y-2">
-          <h2 id="hardware-list" className="font-mono text-micro uppercase tracking-[0.14em] text-muted">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
+        <section aria-labelledby="hardware-list" className="space-y-3">
+          <h2 id="hardware-list" className="font-head text-body font-bold uppercase text-text">
             Resting on {planet === "moon" ? "the Moon" : "Mars"} · {bodyProfiles.length}
           </h2>
-          <ul className="grid gap-px overflow-hidden rounded-[3px] border border-rule bg-rule sm:grid-cols-2">
+          <ul className="nb-card grid gap-[2px] overflow-hidden bg-rule sm:grid-cols-2">
             {bodyProfiles.map((p) => {
               const key = groups.find((g) => g.profiles.includes(p))!.key;
               return (
@@ -115,11 +115,11 @@ export function SurfaceMap() {
                     type="button"
                     onClick={() => setSelectedKey(key)}
                     aria-pressed={selectedKey === key}
-                    className={cn("flex w-full items-start gap-2.5 px-3 py-2 text-left hover:bg-void/50", selectedKey === key && "bg-void/60")}
+                    className={cn("flex h-full w-full items-start gap-2.5 px-3 py-2.5 text-left hover:bg-sunk", selectedKey === key && "bg-amber hover:bg-amber")}
                   >
-                    <span aria-hidden className={cn("mt-1.5 h-2 w-2 shrink-0 rounded-full", STATUS_DOT[p.status])} />
+                    <span aria-hidden className={cn("mt-1 h-3 w-3 shrink-0 rounded-full border-2 border-rule", STATUS_DOT[p.status])} />
                     <span className="min-w-0">
-                      <span className="block text-small text-text">{p.displayName}</span>
+                      <span className="block text-small font-bold text-text">{p.displayName}</span>
                       <span className="block font-mono text-label uppercase tracking-wider text-muted">
                         {p.telemetry.coordinates.siteName} · {formatSiteCoords(p)}
                       </span>
@@ -130,12 +130,12 @@ export function SurfaceMap() {
             })}
           </ul>
         </section>
-        <aside className="space-y-3 font-mono text-meta text-muted">
-          <h2 className="text-micro uppercase tracking-[0.14em]">Legend</h2>
+        <aside className="nb-card space-y-3 self-start bg-panel p-4 font-mono text-meta text-text">
+          <h2 className="font-head text-body font-bold uppercase">Legend</h2>
           <ul className="space-y-1">
             {STATUSES.map((s) => (
               <li key={s.id} className="flex items-center gap-2">
-                <span aria-hidden className={cn("h-2 w-2 rounded-full", STATUS_DOT[s.id])} />
+                <span aria-hidden className={cn("h-3 w-3 rounded-full border-2 border-rule", STATUS_DOT[s.id])} />
                 {s.label}
               </li>
             ))}
@@ -146,7 +146,7 @@ export function SurfaceMap() {
           </p>
           <p className="leading-relaxed">
             Base map: {map.credit}.{" "}
-            <a href={map.sourceUrl} target="_blank" rel="noreferrer" className="text-text/80 underline decoration-rule underline-offset-2 hover:text-text">
+            <a href={map.sourceUrl} target="_blank" rel="noreferrer" className="font-bold underline decoration-2 underline-offset-2 hover:bg-amber">
               {map.sourceLabel}
             </a>
             . Public domain.

@@ -28,13 +28,13 @@ export function EquipmentAvatar({
         width={px}
         height={px}
         sizes={`${px}px`}
-        className="h-full w-full rounded-full object-cover ring-1 ring-rule"
+        className="h-full w-full rounded-full border-2 border-rule object-cover"
       />
       <span
         aria-hidden
         className={cn(
-          "absolute bottom-0 right-0 rounded-full ring-2 ring-void",
-          size === "lg" ? "h-3.5 w-3.5" : "h-2 w-2",
+          "absolute bottom-0 right-0 rounded-full border-2 border-rule",
+          size === "lg" ? "h-5 w-5" : "h-3 w-3",
           STATUS_DOT[profile.status],
         )}
       />
