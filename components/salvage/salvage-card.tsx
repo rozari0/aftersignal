@@ -41,7 +41,7 @@ export function SalvageCard({
       id={listing.id}
       aria-labelledby={`${listing.id}-title`}
       className={cn(
-        "nb-card flex min-w-0 scroll-mt-24 flex-col gap-4 p-4 target:shadow-nb-xl target:outline-4 target:outline-amber sm:p-5",
+        "nb-card flex min-w-0 scroll-mt-32 flex-col sm:scroll-mt-24 gap-4 p-4 target:shadow-nb-xl target:outline-4 target:outline-amber sm:p-5",
         telemetry ? "bg-cyan-wash" : "bg-panel",
       )}
     >

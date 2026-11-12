@@ -13,7 +13,7 @@ const links = [
 export function NavLinks() {
   const pathname = usePathname();
   return (
-    <nav aria-label="Primary" className="flex items-center gap-0.5 sm:gap-2">
+    <nav aria-label="Primary" className="flex items-center gap-1.5 sm:gap-2">
       {links.map((link) => {
         const active = link.href === "/" ? pathname === "/" || pathname.startsWith("/equipment") : pathname.startsWith(link.href);
         return (
@@ -22,7 +22,7 @@ export function NavLinks() {
             href={link.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "border-2 px-1.5 py-1 font-head text-label font-bold uppercase transition-colors sm:px-3 sm:text-meta sm:tracking-wide",
+              "border-2 px-2.5 py-1 font-head text-label font-bold uppercase tracking-wide transition-colors sm:px-3 sm:text-meta",
               active ? "border-rule bg-ink text-panel" : "border-transparent text-ink hover:border-rule hover:bg-sunk",
             )}
           >
