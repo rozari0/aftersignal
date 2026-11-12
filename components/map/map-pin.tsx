@@ -20,7 +20,7 @@ export function MapPin({
   const [lead] = group.profiles;
   const label =
     group.profiles.length > 1
-      ? `${group.profiles.map((p) => p.displayName).join(" and ")} at ${lead.telemetry.coordinates.siteName}`
+      ? `${lead.telemetry.coordinates.siteName}, ${group.profiles.length} objects: ${group.profiles.map((p) => p.displayName).join(" and ")}`
       : `${lead.displayName} at ${lead.telemetry.coordinates.siteName}`;
 
   // Positions are computed in the untransformed overlay so pins keep a constant size at any zoom.
@@ -48,7 +48,7 @@ export function MapPin({
       {group.profiles.length > 1 ? (
         <span
           aria-hidden
-          className="absolute -right-1.5 -top-1.5 rounded-full bg-text px-1 font-mono text-[9px] leading-[14px] text-void"
+          className="absolute -right-1.5 -top-1.5 rounded-full bg-text px-1 font-mono text-[10px] leading-[14px] text-void"
         >
           {group.profiles.length}
         </span>

@@ -120,7 +120,7 @@ export function SurfaceMap() {
                     <span aria-hidden className={cn("mt-1.5 h-2 w-2 shrink-0 rounded-full", STATUS_DOT[p.status])} />
                     <span className="min-w-0">
                       <span className="block text-[13px] text-text">{p.displayName}</span>
-                      <span className="block font-mono text-[10px] uppercase tracking-wider text-muted">
+                      <span className="block font-mono text-[11px] uppercase tracking-wider text-muted">
                         {p.telemetry.coordinates.siteName} · {formatSiteCoords(p)}
                       </span>
                     </span>
@@ -130,7 +130,7 @@ export function SurfaceMap() {
             })}
           </ul>
         </section>
-        <aside className="space-y-3 font-mono text-[11px] text-muted">
+        <aside className="space-y-3 font-mono text-[12px] text-muted">
           <h2 className="text-[10px] uppercase tracking-[0.14em]">Legend</h2>
           <ul className="space-y-1">
             {STATUSES.map((s) => (

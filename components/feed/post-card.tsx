@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import { useCrossfade } from "@/lib/motion";
 import { useState } from "react";
 import { CommentThread } from "@/components/comments/comment-thread";
 import { TelemetryStrip } from "@/components/equipment/telemetry-strip";
@@ -31,6 +32,7 @@ export function PostCard({
   hideStrip?: boolean;
 }) {
   const { resolvePostMode } = useDisplayMode();
+  const fade = useCrossfade();
   const mode = resolvePostMode(post.id);
   const profile = profileById[post.authorId];
   const [transmitted, setTransmitted] = useState(0);
@@ -60,10 +62,7 @@ export function PostCard({
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={mode}
-          initial={{ opacity: 0, y: 4 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -4 }}
-          transition={{ duration: 0.18, ease: "easeOut" }}
+          {...fade}
           className="space-y-4"
         >
           {telemetry ? (

@@ -18,9 +18,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/equipment/[id]">): Promise<Metadata> {
   const profile = findProfile((await params).id);
-  if (!profile) return { title: "Signal lost — Aftersignal" };
+  if (!profile) return { title: "Signal lost" };
   return {
-    title: `${profile.displayName} (@${profile.handle}) — Aftersignal`,
+    title: `${profile.displayName} (@${profile.handle})`,
     description: profile.tagline,
   };
 }

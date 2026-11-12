@@ -2,6 +2,7 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { useCrossfade } from "@/lib/motion";
 import Link from "next/link";
 import { EquipmentAvatar } from "@/components/equipment/equipment-avatar";
 import { PostMedia } from "@/components/feed/post-media";
@@ -32,6 +33,7 @@ export function SalvageCard({
   onReserve: (listing: SalvageListing) => void;
 }) {
   const profile = profileById[listing.equipmentId];
+  const fade = useCrossfade();
   const telemetry = mode === "telemetry";
 
   return (
@@ -68,10 +70,7 @@ export function SalvageCard({
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={mode}
-          initial={{ opacity: 0, y: 4 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -4 }}
-          transition={{ duration: 0.18, ease: "easeOut" }}
+          {...fade}
           className="space-y-4"
         >
           {telemetry ? (

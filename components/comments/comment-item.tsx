@@ -35,7 +35,7 @@ export function CommentItem({ comment }: { comment: Comment }) {
           ) : (
             <span className="font-mono text-[12px] text-muted">@visitor · Earth</span>
           )}
-          <span className="font-mono text-[11px] text-muted/70">
+          <span className="font-mono text-[11px] text-muted">
             · <time dateTime={comment.publishedAt}>{formatMissionDate(comment.publishedAt)}</time>
           </span>
         </p>

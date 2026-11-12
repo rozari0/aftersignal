@@ -16,7 +16,6 @@ export function PostModeToggle({ postId }: { postId: string }) {
     <button
       type="button"
       onClick={() => setOverride(postId, nextOverride(state))}
-      aria-label={`Post display mode: ${state === "inherit" ? `following global (${resolved})` : state}. Activate to cycle.`}
       title="Cycle this post: auto → story → telemetry"
       className={cn(
         "rounded-[2px] border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider transition-colors",
@@ -25,7 +24,11 @@ export function PostModeToggle({ postId }: { postId: string }) {
         state === "telemetry" && "border-cyan/60 text-cyan",
       )}
     >
-      ◐ {LABEL[state]}
+      <span aria-hidden>◐ </span>
+      {LABEL[state]}
+      <span className="sr-only">
+        {state === "inherit" ? `: this post follows Ghost Mode (${resolved})` : `: this post is pinned to ${state}`}. Activate to cycle.
+      </span>
     </button>
   );
 }

@@ -57,7 +57,7 @@ export function PostHeader({
           ) : (
             <>
               <time dateTime={post.publishedAt}>{formatMissionDate(post.publishedAt)}</time>
-              {post.story.mood ? <span className="ml-2 normal-case tracking-normal text-muted/70">feeling {post.story.mood}</span> : null}
+              {post.story.mood ? <span className="ml-2 normal-case tracking-normal text-muted">feeling {post.story.mood}</span> : null}
             </>
           )}
         </p>

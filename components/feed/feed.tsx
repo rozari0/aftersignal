@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { useCrossfade } from "@/lib/motion";
 import { useMemo, useState } from "react";
 import { posts } from "@/data";
 import { DEFAULT_FILTERS, filterPosts, isDefaultFilters, normalizeTag, sortForFeed, type FeedFilters } from "@/lib/filters";
@@ -12,11 +13,13 @@ import { PostCard } from "./post-card";
 
 export function Feed() {
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
+  const fade = useCrossfade();
   const visible = useMemo(() => sortForFeed(filterPosts(posts, filters)), [filters]);
 
   const selectHashtag = (tag: string) => {
     setFilters((f) => ({ ...f, hashtag: normalizeTag(tag) }));
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
   };
 
   return (
@@ -61,10 +64,7 @@ export function Feed() {
                 <motion.li
                   key={post.id}
                   layout="position"
-                  initial={{ opacity: 0, y: 4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  {...fade}
                 >
                   <PostCard post={post} commentLimit={2} onHashtag={selectHashtag} />
                 </motion.li>

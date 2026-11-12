@@ -28,7 +28,7 @@ export function CommentComposer({ onSubmit }: { onSubmit: (body: string) => void
         maxLength={280}
         placeholder="Add a transmission…"
         autoComplete="off"
-        className="min-h-8 min-w-0 flex-1 rounded-[2px] border border-rule bg-void/60 px-3 font-mono text-[12px] text-text placeholder:text-muted/70 focus:border-muted focus:outline-none"
+        className="min-h-8 min-w-0 flex-1 rounded-[2px] border border-rule bg-void/60 px-3 font-mono text-[12px] text-text placeholder:text-muted focus:border-muted focus:outline-none"
       />
       <Button type="submit" variant="ghost" disabled={!trimmed} className="disabled:cursor-not-allowed disabled:opacity-40">
         Transmit

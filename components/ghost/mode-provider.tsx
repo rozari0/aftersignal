@@ -1,5 +1,6 @@
 "use client";
 
+import { MotionConfig } from "motion/react";
 import { createContext, use, useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { resolvePostMode as resolve, type DisplayMode, type PostModeOverride } from "@/lib/mode";
 import { getModeSnapshot, getServerModeSnapshot, setModeValue, subscribeMode } from "@/lib/mode-store";
@@ -51,7 +52,12 @@ export function ModeProvider({ children }: { children: React.ReactNode }) {
     [mode, setMode, toggle, overrides, setOverride, resolvePostMode],
   );
 
-  return <ModeContext value={value}>{children}</ModeContext>;
+  // reducedMotion="user": Motion skips transform/layout animations when the OS asks for reduced motion.
+  return (
+    <ModeContext value={value}>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </ModeContext>
+  );
 }
 
 export function useDisplayMode(): ModeContextValue {

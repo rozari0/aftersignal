@@ -2,6 +2,7 @@
 
 import { ArrowLeft, ArrowRight, Recycle } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { useCrossfade } from "@/lib/motion";
 import Link from "next/link";
 import { PostCard } from "@/components/feed/post-card";
 import { MissionLog } from "@/components/ghost/mission-log";
@@ -35,6 +36,7 @@ export function ProfileView({
   next: Neighbour;
 }) {
   const { mode } = useDisplayMode();
+  const fade = useCrossfade();
   const telemetry = mode === "telemetry";
   const lastSignal = posts.find((p) => p.id === profile.lastSignalPostId);
   const rest = sortForFeed(posts.filter((p) => p.id !== profile.lastSignalPostId));
@@ -48,10 +50,7 @@ export function ProfileView({
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={mode}
-          initial={{ opacity: 0, y: 4 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -4 }}
-          transition={{ duration: 0.18, ease: "easeOut" }}
+          {...fade}
         >
           {telemetry ? (
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
