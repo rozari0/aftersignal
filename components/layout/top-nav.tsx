@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GhostToggle } from "@/components/ghost/ghost-toggle";
 
 const links = [
   { href: "/", label: "FEED" },
@@ -34,19 +35,7 @@ export function TopNav() {
           CHANNEL OPEN · ARCHIVE UPLINK 2026
         </span>
 
-        <button
-          type="button"
-          aria-disabled
-          className="ml-auto flex cursor-not-allowed items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-muted"
-        >
-          <span
-            aria-hidden
-            className="flex h-4 w-7 items-center rounded-full border border-rule bg-panel px-0.5"
-          >
-            <span className="h-3 w-3 rounded-full bg-muted" />
-          </span>
-          Ghost Mode
-        </button>
+        <GhostToggle />
       </div>
     </header>
   );
