@@ -8,6 +8,7 @@ const links = [
   { href: "/", label: "Feed" },
   { href: "/salvage", label: "Upcycle" },
   { href: "/locator", label: "Locator" },
+  { href: "/sources", label: "Sources" },
 ];
 
 export function NavLinks() {

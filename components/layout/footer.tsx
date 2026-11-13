@@ -16,6 +16,7 @@ export function Footer() {
           <Link href="/" className="font-bold text-text underline-offset-4 hover:underline">Feed</Link>
           <Link href="/salvage" className="font-bold text-text underline-offset-4 hover:underline">Upcycle Me</Link>
           <Link href="/locator" className="font-bold text-text underline-offset-4 hover:underline">Surface Locator</Link>
+          <Link href="/sources" className="font-bold text-text underline-offset-4 hover:underline">Data Sources</Link>
         </nav>
       </div>
     </footer>
